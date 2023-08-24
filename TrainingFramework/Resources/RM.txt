@@ -1,0 +1,21 @@
+﻿#Models: 3
+ID 0
+FILE Sprite2D.nfg
+ID 1
+FILE Rectangle.nfg
+ID 2
+FILE Woman1.nfg
+
+#2DTextures: 4
+ID 0
+FILE Woman1.tga
+ID 1
+FILE Witch.tga
+ID 2
+FILE EBF5.tga
+ID 3
+FILE Woman2.tga
+
+#Shaders: 1
+ID 0
+FILE TriangleShader
