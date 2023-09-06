@@ -44,6 +44,7 @@
     <OutDir>$(SolutionDir)\BIN\</OutDir>
     <IntDir>$(Configuration)\</IntDir>
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);C:\Users\han.glschool2\Desktop\HIN032_TaTrungHieu\TrainingFramework\SDL\SDL2-devel-2.28.2-VC\SDL2-2.28.2\include;C:\Users\dell\Desktop\HIN032_TaTrungHieu\TrainingFramework\Include\freetype</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)\BIN\</OutDir>
@@ -53,7 +54,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\Include;C:\Users\han.glschool2\Desktop\HIN032_TaTrungHieu\TrainingFramework\Freetype\freetype-2.13.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -61,10 +62,11 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <PrecompiledHeaderFile>../TrainingFramework/stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>libEGL.lib;libGLESv2.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libEGL.lib;libGLESv2.lib;freetype.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\Lib;C:\Users\han.glschool2\Desktop\HIN032_TaTrungHieu\TrainingFramework\Freetype\freetype-2.13.2\objs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
@@ -93,18 +95,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="GSBase.cpp" />
-    <ClCompile Include="GSIntro.cpp" />
-    <ClCompile Include="GSMachine.cpp" />
-    <ClCompile Include="GSMenu.cpp" />
-    <ClCompile Include="Model.cpp" />
-    <ClCompile Include="Object.cpp" />
-    <ClCompile Include="ResourceManager.cpp" />
-    <ClCompile Include="SceneManager.cpp" />
-    <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="Alien1.cpp" />
+    <ClCompile Include="BaseAlien.cpp" />
+    <ClCompile Include="GameManager\ResourceManager.cpp" />
+    <ClCompile Include="GameManager\SceneManager.cpp" />
+    <ClCompile Include="GameObject\BaseObject.cpp" />
+    <ClCompile Include="GameObject\Camera.cpp" />
+    <ClCompile Include="GameObject\GameButton.cpp" />
+    <ClCompile Include="GameObject\Model.cpp" />
+    <ClCompile Include="GameObject\Object.cpp" />
+    <ClCompile Include="GameObject\Animation.cpp" />
+    <ClCompile Include="GameObject\Shaders.cpp" />
+    <ClCompile Include="GameObject\Sound.cpp" />
+    <ClCompile Include="GameObject\Texture.cpp" />
+    <ClCompile Include="GameState\GSBase.cpp" />
+    <ClCompile Include="GameState\GSIntro.cpp" />
+    <ClCompile Include="GameState\GSMachine.cpp" />
+    <ClCompile Include="GameState\GSMenu.cpp" />
+    <ClCompile Include="GameState\GSOver.cpp" />
+    <ClCompile Include="GameState\GSPlay.cpp" />
+    <ClCompile Include="Random.cpp" />
     <ClCompile Include="TrainingFramework.cpp" />
-    <ClCompile Include="Shaders.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -112,25 +123,38 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Utilities\stb_image.h" />
-    <ClInclude Include="Camera.h" />
+    <ClInclude Include="Alien1.h" />
+    <ClInclude Include="BaseAlien.h" />
+    <ClInclude Include="GameManager\ResourceManager.h" />
+    <ClInclude Include="GameManager\SceneManager.h" />
+    <ClInclude Include="GameManager\SingletonClass.h" />
+    <ClInclude Include="GameObject\BaseObject.h" />
+    <ClInclude Include="GameObject\Camera.h" />
+    <ClInclude Include="GameObject\GameButton.h" />
+    <ClInclude Include="GameObject\Model.h" />
+    <ClInclude Include="GameObject\Object.h" />
+    <ClInclude Include="GameObject\Animation.h" />
+    <ClInclude Include="GameObject\Shaders.h" />
+    <ClInclude Include="GameObject\Sound.h" />
+    <ClInclude Include="GameObject\Texture.h" />
+    <ClInclude Include="GameObject\Vertex.h" />
+    <ClInclude Include="GameState\GSBase.h" />
+    <ClInclude Include="GameState\GSIntro.h" />
+    <ClInclude Include="GameState\GSMachine.h" />
+    <ClInclude Include="GameState\GSMenu.h" />
+    <ClInclude Include="GameState\GSOver.h" />
+    <ClInclude Include="GameState\GSPlay.h" />
     <ClInclude Include="Globals.h" />
-    <ClInclude Include="GSBase.h" />
-    <ClInclude Include="GSIntro.h" />
-    <ClInclude Include="GSMachine.h" />
-    <ClInclude Include="GSMenu.h" />
-    <ClInclude Include="Model.h" />
-    <ClInclude Include="Object.h" />
-    <ClInclude Include="ResourceManager.h" />
-    <ClInclude Include="SceneManager.h" />
-    <ClInclude Include="Shaders.h" />
-    <ClInclude Include="SingletonClass.h" />
+    <ClInclude Include="Random.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include="Texture.h" />
-    <ClInclude Include="Vertex.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Readme.doc" />
+    <None Include="..\Resources\Shaders\Animation.fs" />
+    <None Include="..\Resources\Shaders\Animation.vs" />
+    <None Include="..\Resources\Shaders\Text.fs" />
+    <None Include="..\Resources\Shaders\Text.vs" />
     <None Include="..\Resources\Shaders\TriangleShader.fs" />
     <None Include="..\Resources\Shaders\TriangleShader.vs" />
   </ItemGroup>

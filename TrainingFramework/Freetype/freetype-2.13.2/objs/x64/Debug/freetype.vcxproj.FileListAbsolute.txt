@@ -1,0 +1,2 @@
+C:\Users\han.glschool2\Training\HIN032_TaTrungHieu\TrainingFramework\Freetype\freetype-2.13.2\objs\x64\Debug\freetype.dll
+C:\Users\han.glschool2\Desktop\HIN032_TaTrungHieu\TrainingFramework\Freetype\freetype-2.13.2\objs\x64\Debug\freetype.dll

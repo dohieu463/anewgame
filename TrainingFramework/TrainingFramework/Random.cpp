@@ -1,0 +1,1 @@
+#include "../TrainingFramework/stdafx.h"
