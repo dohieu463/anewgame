@@ -1,26 +1,5 @@
-<<<<<<< HEAD
-# ignore file build
-build/
-
-# ignore file mp3
-*.mp3
-
-# ignore pdf files
-*.pdf
-
-.vs/
-=======
-# ignore file build
-build/
-
-# ignore file mp3
-*.mp3
-
-# ignore pdf files
-*.pdf
-
-.vs/
->>>>>>> f98440fa2882b4f075ecfcd1fe95c381c8ee5351
-Debug/
-*.zip
-3D_Tasks.txt
+#Genered or temp foler
+TrainingFramework/.vs
+TrainingFramework/TrainingFramework/Debug
+TrainingFramework/Utilities/Debug
+TrainingFramework/Debug
