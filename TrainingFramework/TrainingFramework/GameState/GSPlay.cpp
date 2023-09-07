@@ -24,6 +24,7 @@ GSPlay::~GSPlay()
 void GSPlay::Init()
 {
 	m_playBackground = SceneManager::GetInstance()->GetObjectByID("play_background");
+	m_base = SceneManager::GetInstance()->GetObjectByID("human_base");
 	printf("This is play\n");
 	//Spawn();
 }
@@ -71,7 +72,7 @@ void GSPlay::Update(float deltaTime)
 				if (animationY <= 120) animationY += 5;
 			}
 			
-			if (animationX > Globals::screenWidth) {
+			if (animationX > Globals::screenWidth - 60) {
 				alienCount--;
 				lives--;
 				if (lives == 0) GSMachine::GetInstance()->PushState(StateType::STATE_GAMEOVER);
@@ -96,6 +97,7 @@ void GSPlay::Update(float deltaTime)
 void GSPlay::Draw()
 {
 	m_playBackground->Draw();
+	m_base->Draw();
 	for (auto& alien : m_alien)
 		alien->Draw();
 }
@@ -122,10 +124,13 @@ void GSPlay::HandleMouseMoveEvents(float x, float y)
 
 void GSPlay::Spawn() 
 {
-	auto alien = SceneManager::GetInstance()->GetAlienByID("alien1");
+	if (alienCount == 10) return;
+	auto new_alien = SceneManager::GetInstance()->GetAlienByID("alien2");
+	auto alien = std::make_shared<BaseAlien>(*new_alien);
 	float animationX = 50;
 	float animationY = (float)Globals::screenHeight / 2 + (distribution(generator) % 5) * 120 - 240;
 	alien->Set2DPos(animationX, animationY);
+
 	m_alien.push_back(alien);
 	alienCount++;
 }

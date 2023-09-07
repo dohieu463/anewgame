@@ -19,15 +19,15 @@ ROTATION 0.0 0.0 0.0
 SCALE 60.0 60.0 
 
 #Aliens: 1
-ID alien1
+ID alien2
 MODEL Sprite2D
 TEXTURES 2
-TEXTURE alien1_run 
+TEXTURE mobAlien2_run 
 NUM_FRAMES 4
 NUM_ACTION 1
 CURRENT_ACTION 0 
 FRAME_TIME 0.1
-TEXTURE alien1_idle 
+TEXTURE mobAlien2_idle 
 NUM_FRAMES 4
 NUM_ACTION 1
 CURRENT_ACTION 0 
@@ -37,7 +37,7 @@ POSITION 0.0 0.0
 ROTATION 0.0 0.0 0.0 
 SCALE 60.0 60.0 
 
-#Objects: 3
+#Objects: 4
 ID intro_logo
 MODEL Sprite2D
 TEXTURE logo
@@ -61,6 +61,14 @@ SHADER TriangleShader
 POSITION 480.0 360.0
 ROTATION 0.0 0.0 0.0
 SCALE 960.0 720.0
+
+ID human_base
+MODEL Sprite2D
+TEXTURE base
+SHADER TriangleShader
+POSITION 880.0 360.0
+ROTATION 0.0 0.0 0.0
+SCALE 160.0 720.0
 
 #Buttons: 2
 ID button_start

@@ -4,6 +4,7 @@
 #include "../TrainingFramework/GameObject/Animation.h"
 #include "../TrainingFramework/GameObject/GameButton.h"
 #include "../BaseAlien.h"
+#include "../TrainingFramework/Alien1.h"
 #include <thread>
 #include <chrono>
 class GSPlay :
@@ -27,6 +28,7 @@ public:
 	void	HandleMouseMoveEvents(float x, float y) override;
 private:
 	std::shared_ptr<Object> m_playBackground;
+	std::shared_ptr<Object> m_base;
 	std::vector<std::shared_ptr<BaseAlien>> m_alien;
 };
 

@@ -4,7 +4,7 @@ FILE Sprite2D
 ID 1
 FILE Rectangle
 
-#2DTextures: 12
+#2DTextures: 13
 ID 0
 FILE menu_background
 ID 1
@@ -14,7 +14,7 @@ FILE btn_exit
 ID 3
 FILE logo
 ID 4
-FILE alien1_run
+FILE mobAlien2_run
 ID 5
 FILE move
 ID 6
@@ -24,11 +24,13 @@ FILE sword
 ID 8
 FILE temp
 ID 9
-FILE alien1_idle
+FILE mobAlien2_idle
 ID 10
 FILE alien1_destroy
 ID 11
 FILE play_background
+ID 12
+FILE base
 
 #Shaders: 2
 ID 0

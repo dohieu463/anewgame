@@ -6,7 +6,7 @@
 class BaseAlien : public Animation
 {
 public:
-	BaseAlien::BaseAlien(
+	BaseAlien(
 		std::shared_ptr<Model> model,
 		std::vector<std::shared_ptr<Texture>> textureVector,
 		std::shared_ptr<Shaders> shader,
@@ -16,6 +16,7 @@ public:
 		std::vector<GLfloat> frameTime
 	);
 	BaseAlien();
+	BaseAlien(const BaseAlien& other);
 	virtual ~BaseAlien();
 
 	bool HandleTouchEvent(GLfloat x, GLfloat y, bool bIsPressed);

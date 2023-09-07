@@ -21,7 +21,7 @@ public:
 	void Draw() override;
 	void Update(float deltatime) override;
 	
-private:
+protected:
 
 	GLint			m_numFrames;
 	GLint			m_currentFrame;
