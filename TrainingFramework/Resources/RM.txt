@@ -1,39 +1,41 @@
 ﻿#Models: 2
-ID 0
-FILE Sprite2D
-ID 1
-FILE Rectangle
+ID 0	FILE Sprite2D
+ID 1	FILE Rectangle
 
-#2DTextures: 13
-ID 0
-FILE menu_background
-ID 1
-FILE btn_start
-ID 2
-FILE btn_exit
-ID 3
-FILE logo
-ID 4
-FILE mobAlien2_run
-ID 5
-FILE move
-ID 6
-FILE gun
-ID 7
-FILE sword
-ID 8
-FILE temp
-ID 9
-FILE mobAlien2_idle
-ID 10
-FILE alien1_destroy
-ID 11
-FILE play_background
-ID 12
-FILE base
+#2DTextures: 31
+ID 0	FILE base 
+ID 1	FILE btn_exit 
+ID 2	FILE btn_quit 
+ID 3	FILE btn_start 
+ID 4	FILE destroyed 
+ID 5 	FILE highAlien1_idle 
+ID 6	FILE highAlien1_run 
+ID 7	FILE highAlien2_idle 
+ID 8	FILE highAlien2_run 
+ID 9	FILE highAlien3_idle 
+ID 10 	FILE highAlien3_run 
+ID 11	FILE logo 
+ID 12 	FILE medAlien1_idle
+ID 13 	FILE medAlien1_run
+ID 14 	FILE medAlien2_idle
+ID 15 	FILE medAlien2_run
+ID 16 	FILE medAlien3_idle
+ID 17 	FILE medAlien3_run
+ID 18 	FILE medAlien4_idle
+ID 19 	FILE medAlien4_run
+ID 20 	FILE menu_background
+ID 21 	FILE mobAlien1_idle
+ID 22 	FILE mobAlien1_run
+ID 23 	FILE mobAlien2_idle
+ID 24 	FILE mobAlien2_run
+ID 25 	FILE mobAlien3_idle 
+ID 26 	FILE mobAlien3_run
+ID 27 	FILE mobAlien4_idle
+ID 28 	FILE mobAlien4_run
+ID 29 	FILE play_background
+ID 30 	FILE temp
 
-#Shaders: 2
-ID 0
-FILE TriangleShader
-ID 1
-FILE Animation
+#Shaders: 3
+ID 0	FILE TriangleShader
+ID 1	FILE Animation
+ID 3	FILE Text

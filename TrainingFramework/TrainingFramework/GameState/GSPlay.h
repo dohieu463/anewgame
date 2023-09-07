@@ -4,9 +4,8 @@
 #include "../TrainingFramework/GameObject/Animation.h"
 #include "../TrainingFramework/GameObject/GameButton.h"
 #include "../BaseAlien.h"
-#include "../TrainingFramework/Alien1.h"
-#include <thread>
-#include <chrono>
+
+void UpdateScore(std::vector<int>& scores, int currentScore);
 class GSPlay :
     public GSBase
 {
@@ -30,5 +29,11 @@ private:
 	std::shared_ptr<Object> m_playBackground;
 	std::shared_ptr<Object> m_base;
 	std::vector<std::shared_ptr<BaseAlien>> m_alien;
+
+	int alienCount = 0;
+	float m_time = 1;
+	float lives = 3;
+	int alienSpawned = 0;
+	int score = 0;
 };
 

@@ -1,10 +1,16 @@
-#pragma once
+﻿#pragma once
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <algorithm>
 
 class Globals
 {
 public:
-	static const int screenWidth = 960;
-	static const int screenHeight = 720;
+	static const int screenWidth = 1280;
+	static const int screenHeight = 960;
+	static std::vector<int> topScores;
+	
 };
 #define KEY_UP				VK_UP
 #define KEY_DOWN			VK_DOWN
@@ -14,5 +20,3 @@ public:
 #define KEY_MOVE_BACKWARD	'S'
 #define KEY_MOVE_LEFT		'A'
 #define KEY_MOVE_RIGHT		'D'
-
-//POINT WDpoint;

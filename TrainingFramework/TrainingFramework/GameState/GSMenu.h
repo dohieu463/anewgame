@@ -3,6 +3,7 @@
 #include "../TrainingFramework/GameObject/Object.h"
 #include "../TrainingFramework/GameObject/Animation.h"
 #include "../TrainingFramework/GameObject/GameButton.h"
+#include "../TrainingFramework/GameObject/Text.h"
 class GSMenu :
     public GSBase
 {

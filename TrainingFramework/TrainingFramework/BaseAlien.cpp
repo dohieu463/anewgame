@@ -8,9 +8,15 @@ BaseAlien::BaseAlien(
 	std::vector<GLint> numFrames,
 	std::vector<GLint> numActions,
 	std::vector<GLint> currentAction,
-	std::vector<GLfloat> frameTime
+	std::vector<GLfloat> frameTime,
+	float speed,
+	int health,
+	int score
 ) : Animation(model, textureVector, shader, numFrames, numActions, currentAction, frameTime)
 {
+	m_speed = speed;
+	m_health = health;
+	m_score = score;
 	m_isAlive = true;
 	m_isHover = false;
 	m_isClick = false;
@@ -24,6 +30,9 @@ void BaseAlien::SetAlienAnimation(int index)
 
 BaseAlien::BaseAlien()
 {
+	m_health = 1;
+	m_score = 1;
+	m_speed = 1;
 	m_isAlive = true;
 	m_isHover = false;
 	m_isClick = false;
@@ -61,6 +70,8 @@ BaseAlien::BaseAlien(const BaseAlien& other)
 	this->m_isHover = other.m_isHover;
 	this->m_isClick = other.m_isClick;
 	this->m_speed = other.m_speed;
+	this->m_health = other.m_health;
+	this->m_score = other.m_score;
 }
 
 BaseAlien::~BaseAlien()
@@ -74,19 +85,20 @@ void BaseAlien::SetAliveStatus(bool status)
 
 bool BaseAlien::HandleTouchEvent(GLfloat x, GLfloat y, bool bIsPressed)
 {
-	///*
 	if ((m_pos.x - m_width / 2.0f <= x) && (x <= m_pos.x + m_width/ 2.0f)
 		&& (m_pos.y - m_height / 2.0f <= y)	&& (y <= m_pos.y + m_height / 2.0f)	
 		&& bIsPressed && GetAliveStatus() )
 	{
-		printf("Clicked!\n");
-		SetAliveStatus(false);
-		SetAlienAnimation(1);
-		return true;
+		printf("Clicked but not dead!\n");
+		m_health--;
+		if (m_health == 0) 
+		{
+			SetAliveStatus(false);
+			SetAlienAnimation(2);
+			return true;
+		}
 	}
-
 	return false;
-	//*/
 }
 
 void BaseAlien::HandleMoveEvent(GLfloat x, GLfloat y)

@@ -13,7 +13,10 @@ public:
 		std::vector<GLint> numFrames,
 		std::vector<GLint> numActions,
 		std::vector<GLint> currentAction,
-		std::vector<GLfloat> frameTime
+		std::vector<GLfloat> frameTime,
+		float speed,
+		int health,
+		int score
 	);
 	BaseAlien();
 	BaseAlien(const BaseAlien& other);
@@ -26,10 +29,15 @@ public:
 	void SetAliveStatus(bool status);
 	bool GetAliveStatus() { return m_isAlive; };
 	void SetAlienAnimation(int index);
+	float GetSpeed() { return m_speed; };
+	int GetScore() { return m_score; };
+	float m_destroyedTime = 0;
 private:
 	bool m_isAlive;
 	bool m_isHover;
 	bool m_isClick;
 	float m_speed;
+	int m_health;
+	int m_score;
 };
 

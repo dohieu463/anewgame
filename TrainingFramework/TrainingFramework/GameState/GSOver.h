@@ -4,8 +4,6 @@
 #include "../TrainingFramework/GameObject/Animation.h"
 #include "../TrainingFramework/GameObject/GameButton.h"
 #include "../BaseAlien.h"
-#include <thread>
-#include <chrono>
 class GSOver :
     public GSBase
 {

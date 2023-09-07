@@ -54,7 +54,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)\Include;C:\Users\han.glschool2\Desktop\HIN032_TaTrungHieu\TrainingFramework\Freetype\freetype-2.13.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\Include;C:\Users\han.glschool2\Desktop\HIN032_TaTrungHieu\TrainingFramework\SDL2_ttf-devel-2.20.2-VC\SDL2_ttf-2.20.2\include;C:\Users\han.glschool2\Desktop\HIN032_TaTrungHieu\TrainingFramework\SDL\SDL2-devel-2.28.2-VC\SDL2-2.28.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -65,8 +65,8 @@
       <PrecompiledHeaderFile>../TrainingFramework/stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>libEGL.lib;libGLESv2.lib;freetype.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)\Lib;C:\Users\han.glschool2\Desktop\HIN032_TaTrungHieu\TrainingFramework\Freetype\freetype-2.13.2\objs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libEGL.lib;libGLESv2.lib;SDL2_ttf.lib;SDL2.lib;SDL2main.lib;SDL2test.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\Lib;C:\Users\han.glschool2\Desktop\HIN032_TaTrungHieu\TrainingFramework\SDL2_ttf-devel-2.20.2-VC\SDL2_ttf-2.20.2\lib\x64;C:\Users\han.glschool2\Desktop\HIN032_TaTrungHieu\TrainingFramework\SDL\SDL2-devel-2.28.2-VC\SDL2-2.28.2\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
@@ -95,7 +95,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Alien1.cpp" />
     <ClCompile Include="BaseAlien.cpp" />
     <ClCompile Include="GameManager\ResourceManager.cpp" />
     <ClCompile Include="GameManager\SceneManager.cpp" />
@@ -114,7 +113,6 @@
     <ClCompile Include="GameState\GSMenu.cpp" />
     <ClCompile Include="GameState\GSOver.cpp" />
     <ClCompile Include="GameState\GSPlay.cpp" />
-    <ClCompile Include="Random.cpp" />
     <ClCompile Include="TrainingFramework.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -123,7 +121,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Utilities\stb_image.h" />
-    <ClInclude Include="Alien1.h" />
     <ClInclude Include="BaseAlien.h" />
     <ClInclude Include="GameManager\ResourceManager.h" />
     <ClInclude Include="GameManager\SceneManager.h" />
@@ -145,7 +142,6 @@
     <ClInclude Include="GameState\GSOver.h" />
     <ClInclude Include="GameState\GSPlay.h" />
     <ClInclude Include="Globals.h" />
-    <ClInclude Include="Random.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>

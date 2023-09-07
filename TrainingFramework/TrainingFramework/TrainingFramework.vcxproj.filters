@@ -89,12 +89,6 @@
     <ClCompile Include="BaseAlien.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Random.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Alien1.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Utilities\stb_image.h">
@@ -167,8 +161,6 @@
       <Filter>Source Files\GameObject</Filter>
     </ClInclude>
     <ClInclude Include="BaseAlien.h" />
-    <ClInclude Include="Random.h" />
-    <ClInclude Include="Alien1.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Readme.doc" />

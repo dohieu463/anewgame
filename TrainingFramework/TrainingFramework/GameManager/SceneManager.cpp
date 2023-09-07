@@ -35,7 +35,7 @@ void SceneManager::LoadScene(char* smFile) {
                 file >> type >> 
                     pos.x >> pos.y >> type >> 
                     rot.x >> rot.y >> rot.z >> type >> 
-                    size.x >> size.y;
+                    size.x >> size.y >> type;
                 // Lưu thông tin về object vào đây
                               
                 std::shared_ptr<Object> newObject = std::make_shared<Object>(model_id.c_str(), texture_id.c_str(), shader_id.c_str());
@@ -64,7 +64,7 @@ void SceneManager::LoadScene(char* smFile) {
                 file >> type >>
                     pos.x >> pos.y >> type >>
                     rot.x >> rot.y >> rot.z >> type >>
-                    size.x >> size.y;
+                    size.x >> size.y >> type;
                 // Lưu thông tin về object vào đây
                 
                 std::shared_ptr<GameButton> newButton = std::make_shared<GameButton>(model_id.c_str(), texture_id.c_str(), shader_id.c_str(), buttonType.c_str());
@@ -112,7 +112,7 @@ void SceneManager::LoadScene(char* smFile) {
                 file >> type >> shader_id >> type >>
                     pos.x >> pos.y >> type >>
                     rot.x >> rot.y >> rot.z >> type >>
-                    size.x >> size.y;
+                    size.x >> size.y >> type;
                 // Lưu thông tin về animation vào đây
                 std::shared_ptr<Model> modelPtr = ResourceManager::GetInstance()->GetModelPointerByName(model_id.c_str());
                 std::shared_ptr<Shaders> shaderPtr = ResourceManager::GetInstance()->GetShaderPointerByName(shader_id.c_str());
@@ -145,6 +145,9 @@ void SceneManager::LoadScene(char* smFile) {
                 Vector2 pos;
                 Vector3 rot;
                 Vector2 size;
+                float speed;
+                int health;
+                int score;
 
                 file >> type >> alien_id >> type >> model_id >> type >> numTexture;
                 for (int j = 0; j < numTexture; ++j) {
@@ -163,7 +166,7 @@ void SceneManager::LoadScene(char* smFile) {
                 file >> type >> shader_id >> type >>
                     pos.x >> pos.y >> type >>
                     rot.x >> rot.y >> rot.z >> type >>
-                    size.x >> size.y;
+                    size.x >> size.y >> type >> speed >> type >> health >> type >> score >> type; //Buffer ở cuối này là dòng gạch ngang trong file
                 // Lưu thông tin về animation vào đây
                 std::shared_ptr<Model> modelPtr = ResourceManager::GetInstance()->GetModelPointerByName(model_id.c_str());
                 std::shared_ptr<Shaders> shaderPtr = ResourceManager::GetInstance()->GetShaderPointerByName(shader_id.c_str());
@@ -174,7 +177,7 @@ void SceneManager::LoadScene(char* smFile) {
                     textureVector.push_back(texturePtr);
                 }
 
-                std::shared_ptr<BaseAlien> newAlien = std::make_shared<BaseAlien>(modelPtr, textureVector, shaderPtr, numFrames, numAction, currentAction, frameTime);
+                std::shared_ptr<BaseAlien> newAlien = std::make_shared<BaseAlien>(modelPtr, textureVector, shaderPtr, numFrames, numAction, currentAction, frameTime, speed, health, score);
                 newAlien->Set2DPos(pos.x, pos.y);
                 newAlien->SetRotate(rot);
                 newAlien->SetSize(size.x, size.y);

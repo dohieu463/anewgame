@@ -1,71 +1,47 @@
 #pragma once
-#include "../TrainingFramework/GameObject/BaseObject.h"
 
-enum class TextColor {
-	WHITE = 0,
-	RED,
-	GREEN,
-	BLUE,
-	YELLOW,
-	PURPLE,
-	CYAN,
-	BLACK
-};
+#include "../TrainingFramework/stdafx.h"
+#include <string>
+#include <memory>
+#include "BaseObject.h"
+#include "Shaders.h"
+#include "SDL_ttf.h"
+/*
+ *first set : text pos
+ *			  text size
+ *			  text color
+ *			  text message
+ *then call init(std::string path);
+*/
 
-enum class TextAlign {
-	LEFT = 0,
-	RIGHT,
-	CENTER
-};
-
-class Font;
-
-class Text : public BaseObject
+class Text 
 {
-	struct Vertex
-	{
-		float x, y;
-		float u, v;
-	};
 public:
-	Text(std::shared_ptr<Shaders> shader,
-		 std::shared_ptr<Font> font, 
-		 std::string text, 
-		 TextColor color,
-		 float size, 
-		 TextAlign align = TextAlign::LEFT);
-	Text(std::shared_ptr<Shaders> shader, 
-		 std::shared_ptr<Font> font, 
-		 std::string text, 
-		 Vector4 color, 
-		 float size, 
-		 TextAlign align = TextAlign::LEFT);
-	Text(std::shared_ptr<Shaders> shader, 
-		 std::shared_ptr<Font> font, 
-		 std::string text, 
-		 std::shared_ptr<Texture> texture, 
-		 float size, 
-		 TextAlign align = TextAlign::LEFT);
+	Text();
 	~Text();
 
-	//void		Init() override;
-	void		Draw() final;
-	//void		Update(GLfloat deltatime) override;
-	void		SetFont(std::shared_ptr<Font> font);
-	void		SetText(std::string text);
-
-	//void		Set2DPosition(GLfloat x, GLfloat y);
-	//void		Set2DPosition(Vector2 pos);
-
+	void Init(std::string path);
+	void Draw();
+	void Update(float deltaTime);
 private:
-	std::string				m_text;
-	std::shared_ptr<Font>	m_font;
-	std::vector<Vertex>		m_vboData;
 
-	GLint		m_iHeight;
-	GLint		m_iWidth;
-	GLuint		m_vbo;
-	Vector2		m_scale;
-	TextAlign	m_align;
-	Vector4		EnumToVector(TextColor color);
+	Vector2 m_Pos;
+	std::string m_Text ;
+	SDL_Color m_Color = SDL_Color({255,0,0,255});
+	int m_Size;
+
+	std::shared_ptr<Shaders> m_Shader;
+	TTF_Font* font;
+	SDL_Surface* sFont;
+	GLuint m_TextTextureID;
+	std::shared_ptr<BaseObject> m_TextSprite;
+
+
+public:
+
+	Vector2& GetTextPosition() { return m_Pos; }
+	std::string& GetTextMessage() { return m_Text; }
+	int& GetTextSize() { return m_Size; }
+	SDL_Color& GetTextColor() { return m_Color; }
 };
+

@@ -17,25 +17,13 @@ GSOver::~GSOver()
 
 void GSOver::Init()
 {
-	/*m_overBackground = std::make_shared<Object>("Sprite2D", "temp", "TriangleShader");
-	m_overBackground->SetSize(Globals::screenWidth, Globals::screenHeight);
-	m_overBackground->Set2DPos((float)Globals::screenWidth / 2, (float)Globals::screenHeight / 2);
-
-	std::shared_ptr<GameButton> buttonRestart = std::make_shared<GameButton>("Sprite2D", "btn_exit", "TriangleShader", BUTTON_RESTART);
-	buttonRestart->SetSize(150.f, 40.f);
-	buttonRestart->Set2DPos((float)Globals::screenWidth / 2, (float)Globals::screenHeight / 2 + 50);
+	m_overBackground = SceneManager::GetInstance()->GetObjectByID("over_background");
+	auto buttonRestart = SceneManager::GetInstance()->GetButtonByID("button_restart");
 	m_buttonList.push_back(buttonRestart);
-
-	std::shared_ptr<GameButton> buttonScore = std::make_shared<GameButton>("Sprite2D", "btn_start", "TriangleShader", BUTTON_SCORE);
-	buttonScore->SetSize(150.f, 40.f);
-	buttonScore->Set2DPos((float)Globals::screenWidth / 2, (float)Globals::screenHeight / 2);
-	m_buttonList.push_back(buttonScore);
-
-	std::shared_ptr<GameButton> buttonBackMenu = std::make_shared<GameButton>("Sprite2D", "btn_start", "TriangleShader", BUTTON_BACK_TO_MENU);
-	buttonBackMenu->SetSize(150.f, 40.f);
-	buttonBackMenu->Set2DPos((float)Globals::screenWidth / 2, (float)Globals::screenHeight / 2 - 50);
+	auto buttonBackMenu = SceneManager::GetInstance()->GetButtonByID("button_back_to_menu");
 	m_buttonList.push_back(buttonBackMenu);
-	*/
+	auto buttonScore = SceneManager::GetInstance()->GetButtonByID("button_score");
+	m_buttonList.push_back(buttonScore);
 }
 
 void GSOver::Exit()
@@ -57,9 +45,9 @@ void GSOver::Update(float deltaTime)
 
 void GSOver::Draw()
 {
-	/*m_overBackground->Draw();
+	m_overBackground->Draw();
 	for (auto& button : m_buttonList)
-		button->Draw();*/
+		button->Draw();
 }
 
 
@@ -73,28 +61,30 @@ void GSOver::HandleKeyEvents(int key, bool bIsPressed)
 
 void GSOver::HandleTouchEvents(float x, float y, bool bIsPressed)
 {
-	/*for (auto& button : m_buttonList) {
+	for (auto& button : m_buttonList) {
 		if (button->HandleTouchEvent(x, y, bIsPressed))
 		{
 			switch (button->m_type)
 			{
 			case BUTTON_RESTART:
 				GSMachine::GetInstance()->PushState(StateType::STATE_PLAY);
-				printf("Start clicked! ");
 				break;
 			case BUTTON_SCORE:
-				//GSMachine::GetInstance()->Pause();
 				exit(0);
 			case BUTTON_BACK_TO_MENU:
-				//GSMachine::GetInstance()->Pause();
-				exit(0);
+				GSMachine::GetInstance()->PushState(StateType::STATE_MENU);
+				break;
 			default:
 				break;
 			}
 		};
-	}*/
+	}
 }
 
 void GSOver::HandleMouseMoveEvents(float x, float y)
 {
+	for (auto& button : m_buttonList)
+	{
+		button->HandleMoveEvent(x, y);
+	}
 }

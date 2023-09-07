@@ -62,7 +62,6 @@ Matrix BaseObject::CalculateWVP()
 	S.SetScale(m_scale);
 	T.SetTranslation(m_pos);
 	Matrix worldMatrix = S * R * T;
-
 	return worldMatrix * m_camera->GetViewMatrix() * m_camera->GetProjectMatrix();
 };
 
