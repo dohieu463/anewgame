@@ -1,4 +1,4 @@
-#include "../TrainingFramework/stdafx.h"
+﻿#include "../TrainingFramework/stdafx.h"
 #include "GSMachine.h"
 #include "GSBase.h"
 
@@ -22,7 +22,6 @@ void GSMachine::ChangeState(StateType stt)
 {
 	std::shared_ptr<GSBase> nextState = GSBase::CreateState(stt);
 	m_pNextState = nextState;
-
 }
 
 void GSMachine::PushState(StateType stt)
@@ -90,5 +89,26 @@ bool	GSMachine::IsRunning()
 
 void	GSMachine::Pause()
 {
-	m_running = false;
+	if (IsRunning())
+	{
+		// Trò chơi đang chạy, tạm dừng nó và cài đặt trạng thái pause
+		m_running = false;
+		if (m_pActiveState)
+		{
+			m_pActiveState->Pause();
+		}
+	}
+}
+
+void	GSMachine::Resume()
+{
+	if (!IsRunning())
+	{
+		// Trò chơi đã tạm dừng, tiếp tục nó và cài đặt trạng thái running
+		m_running = true;
+		if (m_pActiveState)
+		{
+			m_pActiveState->Resume();
+		}
+	}
 }

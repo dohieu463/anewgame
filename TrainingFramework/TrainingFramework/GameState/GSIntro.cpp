@@ -19,7 +19,6 @@ GSIntro::~GSIntro()
 void GSIntro::Init()
 {
 	m_intro = SceneManager::GetInstance()->GetObjectByID("intro_logo");
-	printf("Intro\n");
 }
 
 void GSIntro::Exit()

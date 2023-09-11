@@ -23,14 +23,11 @@ void GSMenu::Init()
 	m_buttonList.push_back(buttonStart);
 	auto buttonExit = SceneManager::GetInstance()->GetButtonByID("button_exit");
 	m_buttonList.push_back(buttonExit);
-	m_text.GetTextPosition() = Vector2(560, 560); // Đặt vị trí của văn bản
-	m_text.GetTextColor() = SDL_Color({ 0, 0, 0, 1 }); // Đặt màu sắc của văn bản
-	m_text.GetTextSize() = 30; // Đặt kích thước của văn bản
+	m_text.GetTextPosition() = Vector2(640, 290); // Đặt vị trí của văn bản
+	m_text.GetTextColor() = SDL_Color({ 255, 0, 0, 255 }); // Đặt màu sắc của văn bản
+	m_text.GetTextSize() = 80; // Đặt kích thước của văn bản
 	m_text.GetTextMessage() = "Your Text Message"; // Đặt nội dung văn bản
 	m_text.Init("../Resources/Fonts/orbitron/Orbitron-Black.ttf");
-	
-
-	printf("This is menu\n");
 }
 
 void GSMenu::Exit()
@@ -56,6 +53,7 @@ void GSMenu::Update(float deltaTime)
 void GSMenu::Draw()
 {
 	m_menuBackground->Draw();
+	m_text.Draw();
 	for (auto& button : m_buttonList)
 	{
 		button->Draw();
@@ -64,7 +62,6 @@ void GSMenu::Draw()
 	{
 		chara->Draw();
 	}
-	m_text.Draw();
 }
 
 
@@ -86,12 +83,9 @@ void GSMenu::HandleTouchEvents(float x, float y, bool bIsPressed)
 			{
 			case BUTTON_START:
 				GSMachine::GetInstance()->PushState(StateType::STATE_PLAY);
-				printf("Start clicked! ");
 				break;
 			case BUTTON_EXIT:
 				exit(0);
-			default:
-				break;
 			}
 		};
 	}

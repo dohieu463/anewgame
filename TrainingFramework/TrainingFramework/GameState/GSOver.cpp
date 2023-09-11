@@ -69,12 +69,11 @@ void GSOver::HandleTouchEvents(float x, float y, bool bIsPressed)
 			case BUTTON_RESTART:
 				GSMachine::GetInstance()->PushState(StateType::STATE_PLAY);
 				break;
-			case BUTTON_SCORE:
-				exit(0);
 			case BUTTON_BACK_TO_MENU:
 				GSMachine::GetInstance()->PushState(StateType::STATE_MENU);
 				break;
-			default:
+			case BUTTON_SCORE:
+				GSMachine::GetInstance()->PushState(StateType::STATE_SCORE);
 				break;
 			}
 		};

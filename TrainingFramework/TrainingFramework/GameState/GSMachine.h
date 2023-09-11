@@ -17,7 +17,8 @@ public:
 	void	Update(float deltaTime);
 	void	Draw();
 	bool	IsRunning();
-	void	Pause(); 
+	void	Pause();
+	void	Resume();
 	std::shared_ptr<GSBase>	GetCurrentState()
 	{
 		return m_pActiveState;

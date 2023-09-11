@@ -18,14 +18,6 @@ enum ButtonType
 class GameButton : public Object
 {
 public:
-	/*
-	GameButton(
-		std::shared_ptr<Model> model, 
-		std::shared_ptr<Texture> texture, 
-		std::shared_ptr<Shaders> shader,
-		const char* type
-	);
-	*/
 	GameButton(
 		const char* modelName,
 		const char* textureName,
@@ -37,7 +29,7 @@ public:
 
 	bool HandleTouchEvent(GLfloat x, GLfloat y, bool bIsPressed);
 	void HandleMoveEvent(GLfloat x, GLfloat y);
-	void SetButtonType(ButtonType buttonType);
+	
 	bool IsHover();
 	ButtonType GetButtonType() { return m_type; };
 	ButtonType m_type;

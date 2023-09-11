@@ -23,9 +23,7 @@ public:
 	virtual ~BaseAlien();
 
 	bool HandleTouchEvent(GLfloat x, GLfloat y, bool bIsPressed);
-	void HandleMoveEvent(GLfloat x, GLfloat y);
-	bool IsHover();
-
+	
 	void SetAliveStatus(bool status);
 	bool GetAliveStatus() { return m_isAlive; };
 	void SetAlienAnimation(int index);
@@ -35,6 +33,8 @@ public:
 	void UpdatePos(float deltaTime, float difficult);
 
 	float m_destroyedTime = 0;
+	float m_directionYTime = 0;
+	int m_direction = 0;
 private:
 	bool m_isAlive;
 	bool m_isHover;

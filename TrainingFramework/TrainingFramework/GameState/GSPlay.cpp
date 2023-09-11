@@ -19,8 +19,11 @@ void GSPlay::Init()
 	m_playBackground = SceneManager::GetInstance()->GetObjectByID("play_background");
 	m_base = SceneManager::GetInstance()->GetObjectByID("human_base");
 	m_loadingAnimation = SceneManager::GetInstance()->GetAnimationByID("loading_animation");
-	printf("This is play\n");
-
+	auto buttonPause = SceneManager::GetInstance()->GetButtonByID("button_pause");
+	m_buttonList.push_back(buttonPause);
+	auto buttonResume = SceneManager::GetInstance()->GetButtonByID("button_resume");
+	m_buttonList.push_back(buttonResume);
+	
 	alienCount = 0;
 	m_time = 1;
 	lives = 3;
@@ -41,6 +44,7 @@ void GSPlay::Exit()
 
 void GSPlay::Pause()
 {
+	
 }
 
 void GSPlay::Resume()
@@ -59,11 +63,7 @@ void GSPlay::GunUpdate(float deltaTime)
 	}
 	else 
 	{
-		if (m_bullets == 0)
-		{
-			printf("Bullets run out");
-			isBulletOut = true;
-		}
+		if (m_bullets == 0)	isBulletOut = true;
 	}
 }
 
@@ -83,19 +83,15 @@ void GSPlay::Update(float deltaTime)
 				lives--;
 			}
 
-			else
-			{
-				alien->Update(deltaTime);
-				aliveAlien.push_back(alien);
-			}
+			else aliveAlien.push_back(alien);
 		}
 		else 
 		{
 			alien->m_destroyedTime += deltaTime;
-			alien->Update(deltaTime);
 			if (alien->m_destroyedTime <= 0.5f) 
 				aliveAlien.push_back(alien);
 		}
+		alien->Update(deltaTime);
 	}	
 	m_alien = aliveAlien;
 
@@ -113,6 +109,8 @@ void GSPlay::Draw()
 	for (auto& alien : m_alien)
 		alien->Draw();
 	if (isBulletOut) m_loadingAnimation->Draw();
+	for (auto& button : m_buttonList)
+		button->Draw();
 }
 
 
@@ -138,10 +136,32 @@ void GSPlay::HandleTouchEvents(float x, float y, bool bIsPressed)
 			}
 		}
 	}
+
+	for (auto& button : m_buttonList) {
+		if (button->HandleTouchEvent(x, y, bIsPressed))
+		{
+			switch (button->m_type)
+			{
+			case BUTTON_PAUSE:
+				GSMachine::GetInstance()->Pause();
+				button->SetAlpha(0.5f);
+				break;
+			case BUTTON_RESUME:
+				GSMachine::GetInstance()->Resume();
+				for (auto& btn : m_buttonList)
+					btn->SetAlpha(1.0f);
+				break;
+			}
+		};
+	}
 }
 
 void GSPlay::HandleMouseMoveEvents(float x, float y)
 {
+	for (auto& button : m_buttonList)
+	{
+		button->HandleMoveEvent(x, y);
+	}
 }
 
 void GSPlay::Spawn(const char* type) 

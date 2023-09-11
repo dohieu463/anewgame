@@ -39,6 +39,7 @@ private:
 	std::shared_ptr<Object> m_base;
 	std::vector<std::shared_ptr<BaseAlien>> m_alien;
 	std::shared_ptr<Animation> m_loadingAnimation;
+	std::vector<std::shared_ptr<GameButton>> m_buttonList;
 
 	int alienCount;
 	float m_time;
@@ -53,4 +54,3 @@ private:
 	float m_reloadTime;
 	bool isBulletOut;
 };
-

@@ -49,8 +49,7 @@ void Animation::Draw()
 	glBindBuffer(GL_ARRAY_BUFFER, m_model->getVboId());
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_model->getIboId());
 	glBindTexture(GL_TEXTURE_2D, m_currentTexture->getTextureId());
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
 
 	GLint positionAttribute = glGetAttribLocation(m_shader->program, "a_posL");
 	if (positionAttribute != -1)

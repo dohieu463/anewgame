@@ -82,6 +82,9 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>SourceFile</Filter>
     </ClCompile>
+    <ClCompile Include="GameState\GSScore.cpp">
+      <Filter>SourceFile\GameState</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameManager\ResourceManager.h">
@@ -155,6 +158,9 @@
     </ClInclude>
     <ClInclude Include="targetver.h">
       <Filter>SourceFile</Filter>
+    </ClInclude>
+    <ClInclude Include="GameState\GSScore.h">
+      <Filter>SourceFile\GameState</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -8,6 +8,7 @@ enum StateType {
 	STATE_MENU,
 	STATE_PLAY,
 	STATE_GAMEOVER,
+	STATE_SCORE
 };
 
 class GSBase

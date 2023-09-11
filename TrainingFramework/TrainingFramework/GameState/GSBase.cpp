@@ -4,6 +4,7 @@
 #include "GSMenu.h"
 #include "GSPlay.h"
 #include "GSOver.h"
+#include "GSScore.h"
 
 GSBase::GSBase()
 {
@@ -32,6 +33,8 @@ std::shared_ptr<GSBase> GSBase::CreateState(StateType stateType)
 		return std::make_shared<GSPlay>();
 	case STATE_GAMEOVER:
 		return std::make_shared<GSOver>();
+	case STATE_SCORE:
+		return std::make_shared<GSScore>();
 	default:
 		break;
 	}

@@ -77,17 +77,23 @@ BaseAlien::BaseAlien(const BaseAlien& other)
 void BaseAlien::UpdatePos(float deltaTime, float difficult)
 {
 	// Tính toán sự biến đổi trong hướng X và Y
+	if (m_directionYTime <= 0) {
+		m_directionYTime = rand() % 3 + 1;
+		m_direction = rand() % 2;
+	}
+	m_directionYTime -= deltaTime;
 	float deltaX = 0.0f;
 	float deltaY = 0.0f;
 
 	deltaX = m_speed * deltaTime * difficult;
-	deltaY = (rand() % 9 - 4) * difficult; // Số ngẫu nhiên trong khoảng [-4, 4]
+	deltaY = (rand() % 3) * difficult; 
 
 	m_pos.x += deltaX;
-	m_pos.y += deltaY;
+	if(m_direction == 1) m_pos.y += deltaY;
+	else m_pos.y -= deltaY;
 
-	if (m_pos.y <= 120) m_pos.y += 2 * deltaY;
-	if (m_pos.y >= 960) m_pos.y -= 2 * deltaY;
+	if (m_pos.y <= 180) m_pos.y += 2 * deltaY;
+	if (m_pos.y >= 900) m_pos.y -= 2 * deltaY;
 
 	return;
 }
@@ -107,7 +113,6 @@ bool BaseAlien::HandleTouchEvent(GLfloat x, GLfloat y, bool bIsPressed)
 		&& (m_pos.y - m_height / 2.0f <= y)	&& (y <= m_pos.y + m_height / 2.0f)	
 		&& bIsPressed && GetAliveStatus() )
 	{
-		printf("Clicked but not dead!\n");
 		m_health--;
 		if (m_health == 0) 
 		{
@@ -117,25 +122,4 @@ bool BaseAlien::HandleTouchEvent(GLfloat x, GLfloat y, bool bIsPressed)
 		}
 	}
 	return false;
-}
-
-void BaseAlien::HandleMoveEvent(GLfloat x, GLfloat y)
-{
-	/*
-	if ((m_pos.x - m_width / 2.0f <= x) && (x <= m_pos.x + m_width / 2.0f)
-		&& (m_pos.y - m_height / 2.0f <= y) && (y <= m_pos.y + m_height / 2.0f))
-	{
-		m_isHover = true;
-		m_alpha = 0.8f;
-	}
-	else
-	{
-		m_alpha = 1.0f;
-	}
-	*/
-}
-
-bool BaseAlien::IsHover()
-{
-	return m_isHover;
 }

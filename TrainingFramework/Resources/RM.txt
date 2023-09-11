@@ -2,7 +2,7 @@
 ID 0	FILE Sprite2D
 ID 1	FILE Rectangle
 
-#2DTextures: 58
+#2DTextures: 60
 ID 0	FILE base 
 ID 1	FILE btn_exit 
 ID 2	FILE btn_quit 
@@ -61,6 +61,8 @@ ID 54 	FILE quit_button
 ID 55 	FILE resume_button
 ID 56 	FILE settings_button
 ID 57	FILE start_button
+ID 58	FILE pause_col_square_button
+ID 59	FILE play_col_square_button
 #Shaders: 3
 ID 0	FILE TriangleShader
 ID 1	FILE Animation

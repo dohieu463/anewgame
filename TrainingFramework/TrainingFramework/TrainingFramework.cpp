@@ -21,6 +21,8 @@
 int KeyPressed = 0;
 std::shared_ptr<Object> object;
 int Init ( ESContext *esContext ) {
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	esContext->running = true;
 	ResourceManager::GetInstance()->LoadResource("../Resources/RM.txt");
 	SceneManager::GetInstance()->LoadScene("../Resources/SM.txt");
@@ -49,82 +51,6 @@ void Update ( ESContext *esContext, float deltaTime ) {
 	}
 }
 
-void Key ( ESContext *esContext, unsigned char key, bool bIsPressed) {
-	if (bIsPressed) {
-		switch (key) {
-		case KEY_UP:
-			KeyPressed |= 1;
-			break;
-
-		case KEY_DOWN:
-			KeyPressed |= 1 << 1;
-			break;
-
-		case KEY_LEFT:
-			KeyPressed |= 1 << 2;
-			break;
-
-		case KEY_RIGHT:
-			KeyPressed |= 1 << 3;
-			break;
-		
-		case KEY_MOVE_FORWARD:
-			KeyPressed |= 1 << 4;
-			break;
-
-		case KEY_MOVE_BACKWARD:
-			KeyPressed |= 1 << 5;
-			break;
-
-		case KEY_MOVE_LEFT:
-			KeyPressed |= 1 << 6;
-			break;
-
-		case KEY_MOVE_RIGHT:
-			KeyPressed |= 1 << 7;
-			break;
-
-		}
-	}
-
-	else {
-		switch (key) {
-		case KEY_UP:
-			KeyPressed ^= 1;
-			break;
-
-		case KEY_DOWN:
-			KeyPressed ^= 1 << 1;
-			break;
-
-		case KEY_LEFT:
-			KeyPressed ^= 1 << 2;
-			break;
-
-		case KEY_RIGHT:
-			KeyPressed ^= 1 << 3;
-			break;
-
-		case KEY_MOVE_FORWARD:
-			KeyPressed ^= 1 << 4;
-			break;
-
-		case KEY_MOVE_BACKWARD:
-			KeyPressed ^= 1 << 5;
-			break;
-
-		case KEY_MOVE_LEFT:
-			KeyPressed ^= 1 << 6;
-			break;
-
-		case KEY_MOVE_RIGHT:
-			KeyPressed ^= 1 << 7;
-			break;
-
-		}
-	}
-}
-
 void CleanUp() {
 	ResourceManager::FreeInstance();
 	SceneManager::FreeInstance();
@@ -133,10 +59,6 @@ void CleanUp() {
 
 void MouseClick(ESContext* esContext, int x, int y, bool isPressed) 
 {
-	if (isPressed)
-	{
-		printf("%d %d\n", x, y);
-	}
 	GSMachine::GetInstance()->GetCurrentState()->HandleTouchEvents(x, y, isPressed);
 }
 
@@ -149,14 +71,13 @@ int _tmain(int argc, _TCHAR* argv[]) {
 	ESContext esContext;
 
     esInitContext ( &esContext );
-	esCreateWindow ( &esContext, "Hello Triangle", Globals::screenWidth, Globals::screenHeight, ES_WINDOW_RGB | ES_WINDOW_DEPTH);
+	esCreateWindow ( &esContext, "Stop the Alien!!!", Globals::screenWidth, Globals::screenHeight, ES_WINDOW_RGB | ES_WINDOW_DEPTH);
 
 	if ( Init ( &esContext ) != 0 )
 		return 0;
 
 	esRegisterDrawFunc ( &esContext, Draw );
 	esRegisterUpdateFunc ( &esContext, Update );
-	esRegisterKeyFunc ( &esContext, Key);
 	esRegisterMouseFunc(&esContext, MouseClick);
 	esRegisterMouseMoveFunc(&esContext, OnMouseMove);
 

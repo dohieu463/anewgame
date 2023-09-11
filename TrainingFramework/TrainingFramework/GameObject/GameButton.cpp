@@ -1,23 +1,6 @@
 ﻿#include "../TrainingFramework/stdafx.h"
 #include "GameButton.h"
 
-/*
-GameButton::GameButton(
-	std::shared_ptr<Model> model, 
-	std::shared_ptr<Texture> texture, 
-	std::shared_ptr<Shaders> shader,
-	const char* type
-) 
-{
-	m_model = model;
-	m_texture = texture;
-	m_shader = shader;
-	m_type = StringToButtonType(type);
-	m_isHover = false;
-	m_isClick = false;
-}
-*/
-
 GameButton::GameButton(
 	const char* modelName,
 	const char* textureName,
@@ -57,11 +40,11 @@ bool GameButton::HandleTouchEvent(GLfloat x, GLfloat y, bool bIsPressed)
 		&& bIsPressed)
 	{
 		m_alpha = 2.0f;
-		printf("Clicked!\n");
+		m_isClick = true;
 		return true;
 	}
 
-	m_alpha = 1.0f;
+	if (!m_isClick) m_alpha = 1.0f;
 
 	return false;
 }
@@ -72,11 +55,12 @@ void GameButton::HandleMoveEvent(GLfloat x, GLfloat y)
 		&& (m_pos.y - m_height / 2.0f <= y) && (y <= m_pos.y + m_height / 2.0f))
 	{
 		m_isHover = true;
-		m_alpha = 0.8f;
+		if (!m_isClick) m_alpha = 0.8f;
 	}
 	else
 	{
 		m_alpha = 1.0f;
+		if (!m_isClick) m_alpha = 1.0f;
 	}
 }
 
@@ -84,11 +68,6 @@ bool GameButton::IsHover()
 {
 	return m_isHover;
 }
-
-void GameButton::SetButtonType(ButtonType buttonType)
-{
-	m_type = buttonType;
-};
 
 ButtonType GameButton::StringToButtonType(const char* buttonTypeStr) {
 	static const std::unordered_map<std::string, ButtonType> typeMap = {
@@ -104,10 +83,5 @@ ButtonType GameButton::StringToButtonType(const char* buttonTypeStr) {
 	auto it = typeMap.find(buttonTypeStr);
 	if (it != typeMap.end()) {
 		return it->second;
-	}
-	else {
-		// Xử lý trường hợp không hợp lệ nếu cần
-		// Ví dụ: Ném một ngoại lệ hoặc trả về một giá trị mặc định
-		return DEFAULT_BUTTON;
 	}
 }
