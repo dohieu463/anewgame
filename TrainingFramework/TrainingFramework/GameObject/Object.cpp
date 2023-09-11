@@ -182,3 +182,7 @@ void Object::Set2DPos(GLfloat x, GLfloat y)
 {
 	m_pos = Vector3(x, y, 0.0f);
 }
+
+void Object::Set2DPosV(Vector2 m_Pos) {
+	m_pos = Vector3(m_Pos.x, m_Pos.y, 0.0f);
+}

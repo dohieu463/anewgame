@@ -44,7 +44,7 @@
     <OutDir>$(SolutionDir)\BIN\</OutDir>
     <IntDir>$(Configuration)\</IntDir>
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);C:\Users\han.glschool2\Desktop\HIN032_TaTrungHieu\TrainingFramework\SDL\SDL2-devel-2.28.2-VC\SDL2-2.28.2\include;C:\Users\dell\Desktop\HIN032_TaTrungHieu\TrainingFramework\Include\freetype</IncludePath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);C:\Users\han.glschool2\Desktop\HIN032_TaTrungHieu\TrainingFramework\SDL\SDL2-devel-2.28.2-VC\SDL2-2.28.2\include;C:\Users\han.glschool2\Training\HIN032_TaTrungHieu\TrainingFramework\SDL2_ttf-devel-2.20.2-VC\SDL2_ttf-2.20.2\include</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)\BIN\</OutDir>
@@ -54,19 +54,20 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)\Include;C:\Users\han.glschool2\Desktop\HIN032_TaTrungHieu\TrainingFramework\SDL2_ttf-devel-2.20.2-VC\SDL2_ttf-2.20.2\include;C:\Users\han.glschool2\Desktop\HIN032_TaTrungHieu\TrainingFramework\SDL\SDL2-devel-2.28.2-VC\SDL2-2.28.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\Include;C:\Users\han.glschool2\Training\HIN032_TaTrungHieu\TrainingFramework\SDL\SDL2-devel-2.28.2-VC\SDL2-2.28.2\include;C:\Users\han.glschool2\Training\HIN032_TaTrungHieu\TrainingFramework\SDL2_ttf-devel-2.20.2-VC\SDL2_ttf-2.20.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <PrecompiledHeaderFile>../TrainingFramework/stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile />
     </ClCompile>
     <Link>
-      <AdditionalDependencies>libEGL.lib;libGLESv2.lib;SDL2_ttf.lib;SDL2.lib;SDL2main.lib;SDL2test.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)\Lib;C:\Users\han.glschool2\Desktop\HIN032_TaTrungHieu\TrainingFramework\SDL2_ttf-devel-2.20.2-VC\SDL2_ttf-2.20.2\lib\x64;C:\Users\han.glschool2\Desktop\HIN032_TaTrungHieu\TrainingFramework\SDL\SDL2-devel-2.28.2-VC\SDL2-2.28.2\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libEGL.lib;libGLESv2.lib;SDL2.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\Lib;C:\Users\han.glschool2\Training\HIN032_TaTrungHieu\TrainingFramework\SDL\SDL2-devel-2.28.2-VC\SDL2-2.28.2\lib\x64;C:\Users\han.glschool2\Training\HIN032_TaTrungHieu\TrainingFramework\SDL2_ttf-devel-2.20.2-VC\SDL2_ttf-2.20.2\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
@@ -83,6 +84,7 @@
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <AdditionalIncludeDirectories>$(SolutionDir)\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeaderFile>../TrainingFramework/stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -95,17 +97,28 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Utilities\Utilities.vcxproj">
+      <Project>{0d44529e-f7dd-4454-8ead-9afd857f53b4}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\Resources\RM.txt" />
+    <Text Include="..\Resources\SM.txt" />
+  </ItemGroup>
+  <ItemGroup>
     <ClCompile Include="BaseAlien.cpp" />
     <ClCompile Include="GameManager\ResourceManager.cpp" />
     <ClCompile Include="GameManager\SceneManager.cpp" />
+    <ClCompile Include="GameObject\Animation.cpp" />
     <ClCompile Include="GameObject\BaseObject.cpp" />
     <ClCompile Include="GameObject\Camera.cpp" />
     <ClCompile Include="GameObject\GameButton.cpp" />
     <ClCompile Include="GameObject\Model.cpp" />
     <ClCompile Include="GameObject\Object.cpp" />
-    <ClCompile Include="GameObject\Animation.cpp" />
     <ClCompile Include="GameObject\Shaders.cpp" />
     <ClCompile Include="GameObject\Sound.cpp" />
+    <ClCompile Include="GameObject\Text.cpp" />
     <ClCompile Include="GameObject\Texture.cpp" />
     <ClCompile Include="GameState\GSBase.cpp" />
     <ClCompile Include="GameState\GSIntro.cpp" />
@@ -113,26 +126,23 @@
     <ClCompile Include="GameState\GSMenu.cpp" />
     <ClCompile Include="GameState\GSOver.cpp" />
     <ClCompile Include="GameState\GSPlay.cpp" />
+    <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="TrainingFramework.cpp" />
-    <ClCompile Include="stdafx.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Utilities\stb_image.h" />
     <ClInclude Include="BaseAlien.h" />
     <ClInclude Include="GameManager\ResourceManager.h" />
     <ClInclude Include="GameManager\SceneManager.h" />
     <ClInclude Include="GameManager\SingletonClass.h" />
+    <ClInclude Include="GameObject\Animation.h" />
     <ClInclude Include="GameObject\BaseObject.h" />
     <ClInclude Include="GameObject\Camera.h" />
     <ClInclude Include="GameObject\GameButton.h" />
     <ClInclude Include="GameObject\Model.h" />
     <ClInclude Include="GameObject\Object.h" />
-    <ClInclude Include="GameObject\Animation.h" />
     <ClInclude Include="GameObject\Shaders.h" />
     <ClInclude Include="GameObject\Sound.h" />
+    <ClInclude Include="GameObject\Text.h" />
     <ClInclude Include="GameObject\Texture.h" />
     <ClInclude Include="GameObject\Vertex.h" />
     <ClInclude Include="GameState\GSBase.h" />
@@ -145,26 +155,6 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="..\Readme.doc" />
-    <None Include="..\Resources\Shaders\Animation.fs" />
-    <None Include="..\Resources\Shaders\Animation.vs" />
-    <None Include="..\Resources\Shaders\Text.fs" />
-    <None Include="..\Resources\Shaders\Text.vs" />
-    <None Include="..\Resources\Shaders\TriangleShader.fs" />
-    <None Include="..\Resources\Shaders\TriangleShader.vs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Utilities\Utilities.vcxproj">
-      <Project>{0d44529e-f7dd-4454-8ead-9afd857f53b4}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="..\Resources\RM.txt" />
-    <Text Include="..\Resources\SM.txt" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-  <ImportGroup Label="ExtensionTargets">
-  </ImportGroup>
+  <ImportGroup Label="ExtensionTargets" />
 </Project>

@@ -67,7 +67,6 @@ void ResourceManager::LoadResource(const char* rmFile)
             {
                 std::string id;
                 std::string fileName;
-                int numStates;
                 file >> type >> id >> type >> fileName;
                 
                 std::shared_ptr<Shaders> newShader = std::make_shared<Shaders>();
@@ -82,7 +81,7 @@ void ResourceManager::LoadResource(const char* rmFile)
 
 std::shared_ptr<Shaders> ResourceManager::GetShaderPointerByID(const char* shaderID)
 {
-    for (auto it : m_shaders)
+    for (auto& it : m_shaders)
     {
         std::string temp = it.second->GetShaderID();
         if (temp == shaderID)
@@ -95,7 +94,7 @@ std::shared_ptr<Shaders> ResourceManager::GetShaderPointerByID(const char* shade
 
 std::shared_ptr<Texture> ResourceManager::GetTexturePointerByID(const char* textureID)
 {
-    for (auto it : m_textures)
+    for (auto& it : m_textures)
     {
         if (it.second->GetID() == textureID)
         {
@@ -107,7 +106,7 @@ std::shared_ptr<Texture> ResourceManager::GetTexturePointerByID(const char* text
 
 std::shared_ptr<Model> ResourceManager::GetModelPointerByID(const char* modelID)
 {
-    for (auto it : m_models)
+    for (auto& it : m_models)
     {
         if (it.second->GetModelID() == modelID)
         {

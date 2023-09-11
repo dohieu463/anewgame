@@ -31,6 +31,9 @@ public:
 	void SetAlienAnimation(int index);
 	float GetSpeed() { return m_speed; };
 	int GetScore() { return m_score; };
+
+	void UpdatePos(float deltaTime, float difficult);
+
 	float m_destroyedTime = 0;
 private:
 	bool m_isAlive;

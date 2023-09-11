@@ -3,16 +3,10 @@
 #include "../TrainingFramework/stdafx.h"
 #include <string>
 #include <memory>
-#include "BaseObject.h"
+#include "Object.h"
 #include "Shaders.h"
-#include "SDL_ttf.h"
-/*
- *first set : text pos
- *			  text size
- *			  text color
- *			  text message
- *then call init(std::string path);
-*/
+#include "SDL.h"
+#include <SDL_ttf.h>
 
 class Text 
 {
@@ -27,14 +21,14 @@ private:
 
 	Vector2 m_Pos;
 	std::string m_Text ;
-	SDL_Color m_Color = SDL_Color({255,0,0,255});
+	SDL_Color m_Color = SDL_Color({0,0,0,255});
 	int m_Size;
 
-	std::shared_ptr<Shaders> m_Shader;
+	//std::shared_ptr<Shaders> m_Shader;
 	TTF_Font* font;
 	SDL_Surface* sFont;
 	GLuint m_TextTextureID;
-	std::shared_ptr<BaseObject> m_TextSprite;
+	//std::shared_ptr<Object> m_TextSprite;
 
 
 public:

@@ -2,7 +2,7 @@
 ID 0	FILE Sprite2D
 ID 1	FILE Rectangle
 
-#2DTextures: 31
+#2DTextures: 58
 ID 0	FILE base 
 ID 1	FILE btn_exit 
 ID 2	FILE btn_quit 
@@ -34,7 +34,33 @@ ID 27 	FILE mobAlien4_idle
 ID 28 	FILE mobAlien4_run
 ID 29 	FILE play_background
 ID 30 	FILE temp
-
+ID 31	FILE loading_animation
+ID 32 	FILE back_col_button
+ID 33 	FILE continue_col_button
+ID 34 	FILE controls_col_button
+ID 35 	FILE exit_col_button
+ID 36 	FILE load_col_button
+ID 37 	FILE menu_col_button
+ID 38 	FILE new_game_col_button
+ID 39 	FILE options_col_button
+ID 40 	FILE play_col_button
+ID 41 	FILE quit_col_button
+ID 42 	FILE resume_col_button
+ID 43 	FILE settings_col_button
+ID 44	FILE start_col_button
+ID 45 	FILE back_button
+ID 46 	FILE continue_button
+ID 47 	FILE controls_button
+ID 48 	FILE exit_button
+ID 49 	FILE load_button
+ID 50 	FILE menu_button
+ID 51 	FILE new_game_button
+ID 52 	FILE options_button
+ID 53 	FILE play_button
+ID 54 	FILE quit_button
+ID 55 	FILE resume_button
+ID 56 	FILE settings_button
+ID 57	FILE start_button
 #Shaders: 3
 ID 0	FILE TriangleShader
 ID 1	FILE Animation

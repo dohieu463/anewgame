@@ -7,21 +7,21 @@ SPEED 5.0
 ###########################################################################
 #Animations: 1
 
-ID alien1
+ID loading_animation
 MODEL Sprite2D
 TEXTURES 1
-TEXTURE alien1 
-NUM_FRAMES 4
+TEXTURE loading_animation
+NUM_FRAMES 30
 NUM_ACTION 1
 CURRENT_ACTION 0 
 FRAME_TIME 0.1
 SHADER Animation 
-POSITION 0.0 0.0 
+POSITION 640.0 480.0 
 ROTATION 0.0 0.0 0.0 
-SCALE 60.0 60.0 
+SCALE 360.0 360.0 
 --------------------------------------------------------------------------
 ###########################################################################
-#Aliens: 4
+#Aliens: 12
 
 ID mobAlien1
 
@@ -46,8 +46,6 @@ CURRENT_ACTION 0
 FRAME_TIME 0.1
 
 SHADER Animation 
-POSITION 0.0 0.0 
-ROTATION 0.0 0.0 0.0 
 SCALE 60.0 60.0 
 SPEED 100.0
 HEALTH 1
@@ -76,10 +74,8 @@ CURRENT_ACTION 0
 FRAME_TIME 0.1
 
 SHADER Animation 
-POSITION 0.0 0.0 
-ROTATION 0.0 0.0 0.0 
 SCALE 60.0 60.0 
-SPEED 100.0
+SPEED 110.0
 HEALTH 1
 SCORE 10
 --------------------------------------------------------------------------
@@ -106,10 +102,8 @@ CURRENT_ACTION 0
 FRAME_TIME 0.1
 
 SHADER Animation 
-POSITION 0.0 0.0 
-ROTATION 0.0 0.0 0.0 
 SCALE 60.0 60.0 
-SPEED 100.0
+SPEED 120.0
 HEALTH 1
 SCORE 10
 --------------------------------------------------------------------------
@@ -136,13 +130,236 @@ CURRENT_ACTION 0
 FRAME_TIME 0.1
 
 SHADER Animation 
-POSITION 0.0 0.0 
-ROTATION 0.0 0.0 0.0 
 SCALE 60.0 60.0 
-SPEED 100.0
+SPEED 130.0
 HEALTH 1
 SCORE 10
 --------------------------------------------------------------------------
+ID medAlien1
+
+MODEL Sprite2D
+TEXTURES 3
+TEXTURE medAlien1_run 
+NUM_FRAMES 4
+NUM_ACTION 1
+CURRENT_ACTION 0 
+FRAME_TIME 0.1
+
+TEXTURE medAlien1_idle 
+NUM_FRAMES 4
+NUM_ACTION 1
+CURRENT_ACTION 0 
+FRAME_TIME 0.1
+
+TEXTURE destroyed 
+NUM_FRAMES 5
+NUM_ACTION 1
+CURRENT_ACTION 0 
+FRAME_TIME 0.1
+
+SHADER Animation 
+SCALE 80.0 80.0 
+SPEED 100.0
+HEALTH 2
+SCORE 50
+--------------------------------------------------------------------------
+ID medAlien2
+
+MODEL Sprite2D
+TEXTURES 3
+TEXTURE medAlien2_run 
+NUM_FRAMES 4
+NUM_ACTION 1
+CURRENT_ACTION 0 
+FRAME_TIME 0.1
+
+TEXTURE medAlien2_idle 
+NUM_FRAMES 4
+NUM_ACTION 1
+CURRENT_ACTION 0 
+FRAME_TIME 0.1
+
+TEXTURE destroyed 
+NUM_FRAMES 5
+NUM_ACTION 1
+CURRENT_ACTION 0 
+FRAME_TIME 0.1
+
+SHADER Animation 
+SCALE 80.0 80.0 
+SPEED 110.0
+HEALTH 2
+SCORE 50
+--------------------------------------------------------------------------
+ID medAlien3
+
+MODEL Sprite2D
+TEXTURES 3
+TEXTURE medAlien3_run 
+NUM_FRAMES 4
+NUM_ACTION 1
+CURRENT_ACTION 0 
+FRAME_TIME 0.1
+
+TEXTURE medAlien3_idle 
+NUM_FRAMES 4
+NUM_ACTION 1
+CURRENT_ACTION 0 
+FRAME_TIME 0.1
+
+TEXTURE destroyed 
+NUM_FRAMES 5
+NUM_ACTION 1
+CURRENT_ACTION 0 
+FRAME_TIME 0.1
+
+SHADER Animation 
+SCALE 80.0 80.0 
+SPEED 130.0
+HEALTH 2
+SCORE 50
+--------------------------------------------------------------------------
+ID medAlien4
+
+MODEL Sprite2D
+TEXTURES 3
+TEXTURE medAlien4_run 
+NUM_FRAMES 4
+NUM_ACTION 1
+CURRENT_ACTION 0 
+FRAME_TIME 0.1
+
+TEXTURE medAlien4_idle 
+NUM_FRAMES 4
+NUM_ACTION 1
+CURRENT_ACTION 0 
+FRAME_TIME 0.1
+
+TEXTURE destroyed 
+NUM_FRAMES 5
+NUM_ACTION 1
+CURRENT_ACTION 0 
+FRAME_TIME 0.1
+
+SHADER Animation 
+SCALE 80.0 80.0 
+SPEED 200.0
+HEALTH 1
+SCORE 50
+--------------------------------------------------------------------------
+ID highAlien1
+
+MODEL Sprite2D
+TEXTURES 3
+TEXTURE highAlien1_run 
+NUM_FRAMES 4
+NUM_ACTION 1
+CURRENT_ACTION 0 
+FRAME_TIME 0.1
+
+TEXTURE highAlien1_idle 
+NUM_FRAMES 4
+NUM_ACTION 1
+CURRENT_ACTION 0 
+FRAME_TIME 0.1
+
+TEXTURE destroyed 
+NUM_FRAMES 5
+NUM_ACTION 1
+CURRENT_ACTION 0 
+FRAME_TIME 0.1
+
+SHADER Animation 
+SCALE 100.0 100.0 
+SPEED 200.0
+HEALTH 3
+SCORE 100
+--------------------------------------------------------------------------
+ID highAlien2
+
+MODEL Sprite2D
+TEXTURES 3
+TEXTURE highAlien2_run 
+NUM_FRAMES 4
+NUM_ACTION 1
+CURRENT_ACTION 0 
+FRAME_TIME 0.1
+
+TEXTURE highAlien2_idle 
+NUM_FRAMES 4
+NUM_ACTION 1
+CURRENT_ACTION 0 
+FRAME_TIME 0.1
+
+TEXTURE destroyed 
+NUM_FRAMES 5
+NUM_ACTION 1
+CURRENT_ACTION 0 
+FRAME_TIME 0.1
+
+SHADER Animation 
+SCALE 100.0 100.0 
+SPEED 220.0
+HEALTH 3
+SCORE 100
+--------------------------------------------------------------------------
+ID highAlien3
+
+MODEL Sprite2D
+TEXTURES 3
+TEXTURE highAlien3_run 
+NUM_FRAMES 4
+NUM_ACTION 1
+CURRENT_ACTION 0 
+FRAME_TIME 0.1
+
+TEXTURE highAlien3_idle 
+NUM_FRAMES 4
+NUM_ACTION 1
+CURRENT_ACTION 0 
+FRAME_TIME 0.1
+
+TEXTURE destroyed 
+NUM_FRAMES 5
+NUM_ACTION 1
+CURRENT_ACTION 0 
+FRAME_TIME 0.1
+
+SHADER Animation 
+SCALE 100.0 100.0 
+SPEED 240.0
+HEALTH 3
+SCORE 100
+--------------------------------------------------------------------------
+ID highAlien4
+
+MODEL Sprite2D
+TEXTURES 3
+TEXTURE highAlien3_run 
+NUM_FRAMES 4
+NUM_ACTION 1
+CURRENT_ACTION 0 
+FRAME_TIME 0.1
+
+TEXTURE highAlien3_idle 
+NUM_FRAMES 4
+NUM_ACTION 1
+CURRENT_ACTION 0 
+FRAME_TIME 0.1
+
+TEXTURE destroyed 
+NUM_FRAMES 5
+NUM_ACTION 1
+CURRENT_ACTION 0 
+FRAME_TIME 0.1
+
+SHADER Animation 
+SCALE 100.0 100.0 
+SPEED 240.0
+HEALTH 3
+SCORE 100
+--------------------------------------------------------------------------
+
 ###########################################################################
 #Objects: 5
 
@@ -192,7 +409,7 @@ SCALE 1280.0 960.0
 ID button_start
 Type BUTTON_START
 MODEL Sprite2D
-TEXTURE btn_start
+TEXTURE start_button
 SHADER TriangleShader
 POSITION 640.0 430.0
 ROTATION 0.0 0.0 0.0
@@ -201,7 +418,7 @@ SCALE 200.0 80.0
 ID button_exit
 Type BUTTON_EXIT
 MODEL Sprite2D
-TEXTURE btn_exit
+TEXTURE exit_button
 SHADER TriangleShader
 POSITION 640.0 530.0
 ROTATION 0.0 0.0 0.0
@@ -210,7 +427,7 @@ SCALE 200.0 80.0
 ID button_restart
 Type BUTTON_RESTART
 MODEL Sprite2D
-TEXTURE btn_start
+TEXTURE new_game_button
 SHADER TriangleShader
 POSITION 640.0 400.0
 ROTATION 0.0 0.0 0.0
@@ -219,7 +436,7 @@ SCALE 200.0 60.0
 ID button_score
 Type BUTTON_SCORE
 MODEL Sprite2D
-TEXTURE btn_start
+TEXTURE settings_button
 SHADER TriangleShader
 POSITION 640.0 560.0
 ROTATION 0.0 0.0 0.0
@@ -228,7 +445,7 @@ SCALE 200.0 60.0
 ID button_back_to_menu
 Type BUTTON_BACK_TO_MENU
 MODEL Sprite2D
-TEXTURE btn_start
+TEXTURE menu_button
 SHADER TriangleShader
 POSITION 640.0 480.0
 ROTATION 0.0 0.0 0.0

@@ -74,6 +74,24 @@ BaseAlien::BaseAlien(const BaseAlien& other)
 	this->m_score = other.m_score;
 }
 
+void BaseAlien::UpdatePos(float deltaTime, float difficult)
+{
+	// Tính toán sự biến đổi trong hướng X và Y
+	float deltaX = 0.0f;
+	float deltaY = 0.0f;
+
+	deltaX = m_speed * deltaTime * difficult;
+	deltaY = (rand() % 9 - 4) * difficult; // Số ngẫu nhiên trong khoảng [-4, 4]
+
+	m_pos.x += deltaX;
+	m_pos.y += deltaY;
+
+	if (m_pos.y <= 120) m_pos.y += 2 * deltaY;
+	if (m_pos.y >= 960) m_pos.y -= 2 * deltaY;
+
+	return;
+}
+
 BaseAlien::~BaseAlien()
 {
 }

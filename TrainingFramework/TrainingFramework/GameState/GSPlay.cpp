@@ -1,16 +1,8 @@
 ﻿#include "../TrainingFramework/stdafx.h"
 #include "GSPlay.h"
-#include "../TrainingFramework/stdafx.h"
-#include "../TrainingFramework/GameManager/SceneManager.h"
-#include "../TrainingFramework/GameManager/ResourceManager.h"
-#include "../TrainingFramework/Globals.h"
-#include "../TrainingFramework/GameState/GSMachine.h"
-#include<cstdlib>
-#include <algorithm>
 
 float animationX = 50;
 float animationY = (float)Globals::screenHeight / 2; 
-
 std::vector<int> Globals::topScores;
 
 GSPlay::GSPlay()
@@ -26,7 +18,21 @@ void GSPlay::Init()
 {
 	m_playBackground = SceneManager::GetInstance()->GetObjectByID("play_background");
 	m_base = SceneManager::GetInstance()->GetObjectByID("human_base");
+	m_loadingAnimation = SceneManager::GetInstance()->GetAnimationByID("loading_animation");
 	printf("This is play\n");
+
+	alienCount = 0;
+	m_time = 1;
+	lives = 3;
+	alienSpawned = 0;
+	score = 0;
+	m_mobAlienRate = 100;
+	m_medAlienRate = 0;
+	m_highAlienRate = 0;
+	m_bullets = 10;
+	m_gunReloadTime = 2.0f;
+	m_reloadTime = 2.0f;
+	isBulletOut = false;
 }
 
 void GSPlay::Exit()
@@ -41,71 +47,47 @@ void GSPlay::Resume()
 {
 }
 
+void GSPlay::GunUpdate(float deltaTime) 
+{
+	if (isBulletOut) {
+		m_reloadTime -= deltaTime;
+		if (m_reloadTime <= 0) {
+			m_reloadTime = m_gunReloadTime;
+			m_bullets = 10;
+			isBulletOut = false;
+		}
+	}
+	else 
+	{
+		if (m_bullets == 0)
+		{
+			printf("Bullets run out");
+			isBulletOut = true;
+		}
+	}
+}
+
 void GSPlay::Update(float deltaTime)
 {
-	///*
-	m_time -= deltaTime;
-	if (m_time <= 0) {
-		m_time += 1;
-		Spawn();
-	}
-
+	SpawnByDifficult(deltaTime);
+	UpdateDifficult();
+	GunUpdate(deltaTime);
 	std::vector<std::shared_ptr<BaseAlien>> aliveAlien;
-
+	float difficult = (10.0 + alienSpawned % 10) / 10;
 	for (auto& alien : m_alien) {
-		float animationX = alien->GetPos().x;
-		float animationY = alien->GetPos().y;
-		
 		if (alien->GetAliveStatus()) 
 		{
-			float difficult = (10 + alienSpawned % 10) / 10;
-			animationX += alien->GetSpeed() * deltaTime * difficult;
-
-			int random_number = rand();
-
-			if (random_number % 2 == 0)
-			{
-				animationY += 5;
-				if (animationY >= 600) animationY -= 5;
-			}
-			
-			else 
-			{
-				animationY -= 5;
-				if (animationY <= 120) animationY += 5;
-			}
-			
-			if (animationX > Globals::screenWidth - 60) {
+			alien->UpdatePos(deltaTime, difficult);
+			if (alien->GetPos().x > Globals::screenWidth - 60) {
 				alienCount--;
 				lives--;
-				if (lives == 0) 
-				{
-					GSMachine::GetInstance()->PushState(StateType::STATE_GAMEOVER);
-					printf("Your score: %d\n", score);
-
-					UpdateScore(Globals::topScores, score);
-
-					/*
-					Globals::topScores.push_back(score); // Thêm điểm số mới vào cuối danh sách
-
-					// Sắp xếp danh sách theo thứ tự giảm dần
-					std::sort(Globals::topScores.begin(), Globals::topScores.end(), std::greater<int>());
-
-					// Giới hạn danh sách chỉ lấy 5 điểm số lớn nhất
-					if (Globals::topScores.size() > 5) {
-						Globals::topScores.resize(5);
-					}
-					*/
-				}
 			}
 
 			else
 			{
-				alien->Set2DPos(animationX, animationY);
 				alien->Update(deltaTime);
 				aliveAlien.push_back(alien);
 			}
-
 		}
 		else 
 		{
@@ -116,7 +98,12 @@ void GSPlay::Update(float deltaTime)
 		}
 	}	
 	m_alien = aliveAlien;
-	//*/
+
+	if (lives == 0)
+	{
+		UpdateScore(Globals::topScores, score);
+		GSMachine::GetInstance()->PushState(StateType::STATE_GAMEOVER);
+	}
 }
 
 void GSPlay::Draw()
@@ -125,6 +112,7 @@ void GSPlay::Draw()
 	m_base->Draw();
 	for (auto& alien : m_alien)
 		alien->Draw();
+	if (isBulletOut) m_loadingAnimation->Draw();
 }
 
 
@@ -137,13 +125,17 @@ void GSPlay::HandleKeyEvents(int key, bool bIsPressed)
 }
 
 void GSPlay::HandleTouchEvents(float x, float y, bool bIsPressed)
-{
-	for (auto& alien : m_alien) 
+{	
+	if(!isBulletOut) 
 	{
-		if (alien->HandleTouchEvent(x, y, bIsPressed)) 
+		m_bullets-= 0.5f;
+		for (auto& alien : m_alien)
 		{
-			alienCount--;
-			score += alien->GetScore();
+			if (alien->HandleTouchEvent(x, y, bIsPressed))
+			{
+				alienCount--;
+				score += alien->GetScore();
+			}
 		}
 	}
 }
@@ -152,11 +144,12 @@ void GSPlay::HandleMouseMoveEvents(float x, float y)
 {
 }
 
-void GSPlay::Spawn() 
+void GSPlay::Spawn(const char* type) 
 {
 	if (alienCount == 10) return;
+	std::string difficult(type);
 	int randomAlien = rand() % 4 + 1;
-	std::string alienName = "mobAlien" + std::to_string(randomAlien);
+	std::string alienName = difficult + "Alien" + std::to_string(randomAlien);
 	
 	auto new_alien = SceneManager::GetInstance()->GetAlienByID(alienName.c_str());
 	auto alien = std::make_shared<BaseAlien>(*new_alien);
@@ -167,19 +160,37 @@ void GSPlay::Spawn()
 	m_alien.push_back(alien);
 	alienCount++;
 	alienSpawned++;
+}
 
+void GSPlay::UpdateDifficult()
+{
+	if (alienSpawned == 200) return;
+	m_mobAlienRate = 100 - alienSpawned / 2.0;
+	m_medAlienRate = 0 + alienSpawned / 3.0;
+	m_highAlienRate = 0 + alienSpawned / 6.0;
+}
+
+void GSPlay::SpawnByDifficult(float deltaTime) {
+	m_time -= deltaTime;
+	if (m_time <= 0) {
+		m_time += 1;
+		int randomNum = rand() % 100;
+		const char* difficult = nullptr;
+		if (randomNum <= m_mobAlienRate) difficult = "mob";
+		else if (randomNum <= m_mobAlienRate + m_medAlienRate) difficult = "med";
+		else difficult = "high";
+		Spawn(difficult);
+	}
 }
 
 void UpdateScore(std::vector<int>& scores, int currentScore) {
-	// Đọc điểm số từ tệp tin
 	std::ifstream inputFile("high_scores.txt");
 	if (inputFile.is_open()) {
-		scores.clear(); // Xóa toàn bộ điểm số trong vector
-
+		scores.clear(); 
 		std::string line;
 		while (std::getline(inputFile, line)) {
 			if (line == "###") {
-				break; // Đọc đến kí hiệu ### thì dừng
+				break; 
 			}
 
 			try {
@@ -195,30 +206,25 @@ void UpdateScore(std::vector<int>& scores, int currentScore) {
 	}
 	else {
 		std::cerr << "Không thể mở tệp tin." << std::endl;
-		return; // Lỗi mở tệp tin
+		return; 
 	}
-
-	// Thêm điểm số hiện tại vào vector
 	scores.push_back(currentScore);
-
-	// Sắp xếp vector giảm dần
 	std::sort(scores.rbegin(), scores.rend());
 
 	if (scores.size() > 5) {
 		scores.resize(5);
 	}
 
-	// Ghi đè điểm số mới vào tệp tin
 	std::ofstream outputFile("high_scores.txt");
 	if (outputFile.is_open()) {
 		for (const int score : scores) {
 			outputFile << score << std::endl;
 		}
-		outputFile << "###" << std::endl; // Ghi kí hiệu kết thúc tệp
+		outputFile << "###" << std::endl; 
 		outputFile.close();
 	}
 	else {
 		std::cerr << "Không thể ghi tệp tin." << std::endl;
-		return; // Lỗi ghi tệp tin
+		return; 
 	}
 }

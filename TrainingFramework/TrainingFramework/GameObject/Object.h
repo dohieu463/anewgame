@@ -6,6 +6,7 @@
 #include <memory>
 #include <vector>
 #include <string>
+
 class Object {
 
 public:
@@ -36,6 +37,7 @@ public:
 	void SetObjectID(std::string objectID);
 	void SetAlpha(GLfloat alpha);
 	void Set2DPos(GLfloat x, GLfloat y);
+	void Set2DPosV(Vector2 m_Pos);
 	Vector2 GetPos() { return Vector2(m_pos.x, m_pos.y); }
 
 	std::string GetObjectID();
