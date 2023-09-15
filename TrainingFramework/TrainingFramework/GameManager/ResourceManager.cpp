@@ -1,5 +1,6 @@
 ﻿#include "../TrainingFramework/stdafx.h"
 #include "ResourceManager.h"
+#include "SceneManager.h"
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -75,45 +76,55 @@ void ResourceManager::LoadResource(const char* rmFile)
                 m_shaders.insert(std::make_pair(fileName, newShader));
             }
         }
+        else if (type.find("Sound") != std::string::npos)
+        {
+            int numSounds;
+            file >> numSounds;
+            for (int i = 0; i < numSounds; i++)
+            {
+                std::string fileName;
+                file >> type >> fileName;
+
+                // Lưu thông tin về model vào đây
+                std::shared_ptr<Sound> newSound = std::make_shared<Sound>(fileName.c_str());
+                m_sounds.insert(std::make_pair(fileName, newSound));
+            }
+        }
+        else if (type.find("Text") != std::string::npos)
+        {
+            int numTexts;
+            file >> numTexts;
+            for (int i = 0; i < numTexts; i++)
+            {
+                std::string id;
+                Vector2 pos;
+                Vector4 color;
+                GLint size;
+                std::string message;
+                std::string font;
+                file >> type >> id >> type >> pos.x >> pos.y;
+                file >> type >> color.x >> color.y >> color.z >> color.w;
+                file >> type >> size >> type >> message >> type >> font;
+
+                // Lưu thông tin về model vào đây
+                std::shared_ptr<Text> newText = std::make_shared<Text>(pos, color, size, message, font);
+                /*
+                newText->SetPos(Vector3(pos.x, pos.y, 1));
+                auto x = (Uint8)color.x;
+                auto y = (Uint8)color.y;
+                auto z = (Uint8)color.z;
+                auto w = (Uint8)color.w;
+
+                newText->GetTextColor() = SDL_Color({ x, y, z, w });
+                newText->GetTextSize() = size;
+                newText->GetTextMessage() = message;
+                newText->Init(font);
+                */
+                m_texts.insert(std::make_pair(id, newText));
+            }
+        }
     }
     file.close();
-}
-
-std::shared_ptr<Shaders> ResourceManager::GetShaderPointerByID(const char* shaderID)
-{
-    for (auto& it : m_shaders)
-    {
-        std::string temp = it.second->GetShaderID();
-        if (temp == shaderID)
-        {
-            return it.second;
-        }
-    }
-    return nullptr; 
-}
-
-std::shared_ptr<Texture> ResourceManager::GetTexturePointerByID(const char* textureID)
-{
-    for (auto& it : m_textures)
-    {
-        if (it.second->GetID() == textureID)
-        {
-            return it.second;
-        }
-    }
-    return nullptr;
-}
-
-std::shared_ptr<Model> ResourceManager::GetModelPointerByID(const char* modelID)
-{
-    for (auto& it : m_models)
-    {
-        if (it.second->GetModelID() == modelID)
-        {
-            return it.second;
-        }
-    }
-    return nullptr;
 }
 
 std::shared_ptr<Shaders> ResourceManager::GetShaderPointerByName(const char* shaderName)
@@ -143,6 +154,29 @@ std::shared_ptr<Model> ResourceManager::GetModelPointerByName(const char* modelN
     if (it != m_models.end())
     {
         return it->second;
+    }
+    return nullptr;
+};
+
+std::shared_ptr<Sound> ResourceManager::GetSoundPointerByName(const char* soundName)
+{
+    auto it = m_sounds.find(soundName);
+    if (it != m_sounds.end())
+    {
+        return it->second;
+    }
+    return nullptr;
+};
+
+std::shared_ptr<Text> ResourceManager::GetTextPointerByName(const char* name)
+{
+    auto it = m_texts.find(name);
+    if (it != m_texts.end())
+    {
+        auto& textPointer = it->second;
+        auto camera = SceneManager::GetInstance()->GetCamera("smth");
+        textPointer->SetCamera(camera);
+        return textPointer;
     }
     return nullptr;
 };

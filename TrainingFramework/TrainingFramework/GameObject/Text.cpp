@@ -1,13 +1,13 @@
 ﻿
 #include "../TrainingFramework/stdafx.h"
 #include "../TrainingFramework/GameManager/ResourceManager.h"
+#include "../TrainingFramework/GameManager/SceneManager.h"
 #include "Text.h"
 #include <iostream>
 
 
 Text::Text()
 {
-    m_Pos = Vector2(30.0f, 30.0f);
     m_Text = "DefaultText";
     m_Color = { 255, 0, 0, 255 };
     m_Size = 24; // Kích thước mặc định
@@ -20,12 +20,41 @@ Text::Text()
     m_shader = rm->GetShaderPointerByName("TriangleShader");
     m_model = rm->GetModelPointerByName("Sprite2D");
     m_texture = std::make_shared<Texture>();
-    SetPos({640,190,1});
+}
+
+Text::Text(Vector2 pos, Vector4 color, GLint size, std::string message, std::string font)
+{
+    auto rm = ResourceManager::GetInstance();
+    m_shader = rm->GetShaderPointerByName("TriangleShader");
+    m_model = rm->GetModelPointerByName("Sprite2D");
+    m_texture = std::make_shared<Texture>();
+    
+    if (TTF_Init() == -1)
+    {
+        std::cout << "SDL_ttf could not initialize! SDL_ttf Error: " << TTF_GetError() << std::endl;
+    }
+
+    Set2DPos(pos.x, pos.y);
+    auto x = (Uint8)color.x;
+    auto y = (Uint8)color.y;
+    auto z = (Uint8)color.z;
+    auto w = (Uint8)color.w;
+
+    GetTextColor() = SDL_Color({ x, y, z, w });
+    GetTextSize() = size;
+    GetTextMessage() = message;
+    m_font = font;
+    Init(font);
 }
 
 Text::~Text()
 {
     TTF_Quit();
+}
+
+void Text::SetTextMessage(const char* message) 
+{
+    m_Text = std::string(message);
 }
 
 int Text::Init(std::string path)
@@ -82,5 +111,5 @@ void Text::Draw()
 
 void Text::Update(float deltaTime)
 {
-    // Có thể thêm logic cập nhật vị trí, màu sắc, văn bản, hoặc kích thước ở đây nếu cần
+    Init(m_font);
 }

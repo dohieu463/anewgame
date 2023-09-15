@@ -3,6 +3,7 @@
 #include "../TrainingFramework/GameObject/Object.h"
 #include "../TrainingFramework/GameObject/Animation.h"
 #include "../TrainingFramework/GameObject/GameButton.h"
+#include "../TrainingFramework/GameObject/Text.h"
 #include "../BaseAlien.h"
 #include "GSMachine.h"
 #include "../TrainingFramework/GameManager/SceneManager.h"
@@ -29,16 +30,16 @@ public:
 	void	UpdateDifficult();
 	void	SpawnByDifficult(float deltaTime);
 	void	GunUpdate(float deltaTime);
+	void	AlienUpdate(float deltaTime);
 	
 	void	HandleEvents() override;
 	void	HandleKeyEvents(int key, bool bIsPressed) override;
 	void	HandleTouchEvents(float x, float y, bool bIsPressed) override;
 	void	HandleMouseMoveEvents(float x, float y) override;
+	
 private:
-	std::shared_ptr<Object> m_playBackground;
-	std::shared_ptr<Object> m_base;
+	std::vector<std::shared_ptr<Object>> m_objectVector;
 	std::vector<std::shared_ptr<BaseAlien>> m_alien;
-	std::shared_ptr<Animation> m_loadingAnimation;
 	std::vector<std::shared_ptr<GameButton>> m_buttonList;
 
 	int alienCount;
@@ -53,4 +54,5 @@ private:
 	float m_gunReloadTime;
 	float m_reloadTime;
 	bool isBulletOut;
+	int coin;
 };

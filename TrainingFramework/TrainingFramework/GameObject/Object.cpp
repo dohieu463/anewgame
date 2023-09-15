@@ -65,8 +65,6 @@ void Object::Draw()
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_model->getIboId());
 	glBindTexture(GL_TEXTURE_2D, m_texture->getTextureId());
 		
-
-
 	//finding location of uniforms / attributes
 	GLint positionAttribute = glGetAttribLocation(m_shader->program, "a_posL");
 	if (positionAttribute != -1) 
@@ -114,20 +112,19 @@ void Object::Draw()
 void Object::SetPos(Vector3 pos) 
 {
 	m_pos = pos;
-	CalculateWVP();
+	//CalculateWVP();
 }
 
 void Object::SetScale(Vector3 scale) 
 {
 	m_scale = scale;
-	CalculateWVP();
-
+	//CalculateWVP();
 }
 
 void Object::SetRotate(Vector3 rotate) 
 {
 	m_rotate = rotate;
-	CalculateWVP();
+	//CalculateWVP();
 }
 
 void Object::Key() 
@@ -163,7 +160,7 @@ void Object::SetSize(GLfloat width, GLfloat height)
 	m_width = width;
 	m_height = height;	
 	SetScale(Vector3(width, height, 1.0f));
-	CalculateWVP();
+	//CalculateWVP();
 }
 
 void Object::SetObjectID(std::string objectID)
@@ -184,11 +181,11 @@ std::string Object::GetObjectID()
 void Object::Set2DPos(GLfloat x, GLfloat y)
 {
 	m_pos = Vector3(x, y, 0.0f);
-	CalculateWVP();
+	//CalculateWVP();
 
 }
 
 void Object::Set2DPosV(Vector2 m_Pos) {
 	m_pos = Vector3(m_Pos.x, m_Pos.y, 0.0f);
-	CalculateWVP();
+	//CalculateWVP();
 }

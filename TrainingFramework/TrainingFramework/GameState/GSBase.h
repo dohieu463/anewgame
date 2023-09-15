@@ -1,7 +1,11 @@
 #pragma once
 #include "../TrainingFramework/stdafx.h"
+#include "../GameObject/Sound.h"
+#include "../GameObject/Animation.h"
+#include "../GameObject/Text.h"
 #include <memory>
-
+#include <map>
+#include <string>
 enum StateType {
 	STATE_INVALID = 0,
 	STATE_INTRO,
@@ -34,7 +38,23 @@ public:
 	static std::shared_ptr<GSBase> CreateState(StateType stt);
 	StateType GetGameStateType();
 
+	void AddSoundByName(const char* soundName);
+	void PlaySoundByName(const char* soundName);
+	void PauseSoundByName(const char* soundName);
+	void ResumeSoundByName(const char* soundName);
+	void StopSoundByName(const char* soundName);
+
+	void	AddAnimation(const char* name);
+	void	DrawAnimation(const char* name);
+
+	void	AddText(const char* name);
+	void	RenderText(const char* name);
+	void	UpdateText(const char* name, const char* message, float deltaTime);
+	void	UpdateText(const char* name, float message, float deltaTime);
 protected:
 	StateType	m_stateType;
+	std::map<std::string, std::shared_ptr<Sound>> m_soundMap;
+	std::map<std::string, std::shared_ptr<Animation>> m_animationMap;
+	std::map<std::string, std::shared_ptr<Text>> m_textMap;
 };
 

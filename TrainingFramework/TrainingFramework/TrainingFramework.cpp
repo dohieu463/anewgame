@@ -1,6 +1,7 @@
 ﻿// TrainingFramework.cpp : Defines the entry point for the console application.
 
 #include "../TrainingFramework/stdafx.h"
+#define SDL_MAIN_HANDLED
 #include "../Utilities/utilities.h" // if you use STL, please include this line AFTER all other include
 #include "../TrainingFramework/GameObject/Vertex.h"
 #include "../TrainingFramework/GameObject/Model.h"
@@ -59,6 +60,7 @@ void CleanUp() {
 
 void MouseClick(ESContext* esContext, int x, int y, bool isPressed) 
 {
+	if (isPressed) printf("%d %d\n", x, y);
 	GSMachine::GetInstance()->GetCurrentState()->HandleTouchEvents(x, y, isPressed);
 }
 
@@ -86,7 +88,6 @@ int _tmain(int argc, _TCHAR* argv[]) {
 	//releasing OpenGL resources
 	CleanUp();
 	printf("Press any key...\n");
-	_getch();
 
 	return 0;
 }

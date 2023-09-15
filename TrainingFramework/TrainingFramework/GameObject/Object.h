@@ -58,8 +58,5 @@ protected:
 	GLfloat m_alpha;
 	GLfloat m_width;
 	GLfloat m_height;
-	float elapsed_time = 0.0f; // Thời gian đã trôi qua
-	float fade_duration = 2.0f; // Thời gian cần để chuyển từ nhạt đến đậm 
-
 };
 

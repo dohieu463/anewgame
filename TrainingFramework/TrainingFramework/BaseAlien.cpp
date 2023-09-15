@@ -72,6 +72,7 @@ BaseAlien::BaseAlien(const BaseAlien& other)
 	this->m_speed = other.m_speed;
 	this->m_health = other.m_health;
 	this->m_score = other.m_score;
+	this->m_coin = other.m_coin;
 }
 
 void BaseAlien::UpdatePos(float deltaTime, float difficult)
@@ -92,8 +93,8 @@ void BaseAlien::UpdatePos(float deltaTime, float difficult)
 	if(m_direction == 1) m_pos.y += deltaY;
 	else m_pos.y -= deltaY;
 
-	if (m_pos.y <= 180) m_pos.y += 2 * deltaY;
-	if (m_pos.y >= 900) m_pos.y -= 2 * deltaY;
+	if (m_pos.y <= 260) m_pos.y += 2 * deltaY;
+	if (m_pos.y >= 800) m_pos.y -= 2 * deltaY;
 
 	return;
 }
@@ -116,10 +117,29 @@ bool BaseAlien::HandleTouchEvent(GLfloat x, GLfloat y, bool bIsPressed)
 		m_health--;
 		if (m_health == 0) 
 		{
-			SetAliveStatus(false);
-			SetAlienAnimation(2);
+			SetDeath();
 			return true;
 		}
 	}
+	return false;
+}
+
+void BaseAlien::SetDeath()
+{
+	SetAliveStatus(false);
+	SetAlienAnimation(2);
+}
+
+void BaseAlien::SetCoin(int coin)
+{
+	m_coin = coin;
+}
+
+bool BaseAlien::CheckCollide(Vector2 targetPos, Vector2 targetSize)
+{
+	if ((targetPos.x - targetSize.x / 2.0f <= m_pos.x) && (m_pos.x <= targetPos.x + targetSize.x / 2.0f)
+		&& (targetPos.y - targetSize.y / 2.0f <= m_pos.y) && (m_pos.y <= targetPos.y + targetSize.y / 2.0f)
+		&& GetAliveStatus())
+		return true;
 	return false;
 }

@@ -1,10 +1,11 @@
-#include "../TrainingFramework/stdafx.h"
+﻿#include "../TrainingFramework/stdafx.h"
 #include "GSOver.h"
 #include "../TrainingFramework/stdafx.h"
 #include "../TrainingFramework/GameManager/SceneManager.h"
 #include "../TrainingFramework/GameManager/ResourceManager.h"
 #include "../TrainingFramework/Globals.h"
 #include "../TrainingFramework/GameState/GSMachine.h"
+#include "../TrainingFramework/GameObject/Text.h"
 
 GSOver::GSOver()
 {
@@ -24,18 +25,28 @@ void GSOver::Init()
 	m_buttonList.push_back(buttonBackMenu);
 	auto buttonScore = SceneManager::GetInstance()->GetButtonByID("button_score");
 	m_buttonList.push_back(buttonScore);
+	m_text.SetPos({ 640, 190, 1 }); // Đặt vị trí của văn bản
+	m_text.GetTextColor() = SDL_Color({ 255, 0, 0, 255 }); // Đặt màu sắc của văn bản
+	m_text.GetTextSize() = 80; // Đặt kích thước của văn bản
+	m_text.GetTextMessage() = "GAME OVER"; // Đặt nội dung văn bản
+	m_text.Init("../Resources/Fonts/orbitron/Orbitron-Black.ttf");
+	AddSoundByName("tu_sena");
+	PlaySoundByName("tu_sena");
 }
 
 void GSOver::Exit()
 {
+	StopSoundByName("tu_sena");
 }
 
 void GSOver::Pause()
 {
+	PauseSoundByName("tu_sena");
 }
 
 void GSOver::Resume()
 {
+	ResumeSoundByName("tu_sena");
 }
 
 void GSOver::Update(float deltaTime)
@@ -46,6 +57,7 @@ void GSOver::Update(float deltaTime)
 void GSOver::Draw()
 {
 	m_overBackground->Draw();
+	m_text.Draw();
 	for (auto& button : m_buttonList)
 		button->Draw();
 }

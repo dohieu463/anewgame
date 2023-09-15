@@ -29,6 +29,11 @@ public:
 	void SetAlienAnimation(int index);
 	float GetSpeed() { return m_speed; };
 	int GetScore() { return m_score; };
+	int GetCoin() { return m_coin; };
+	void SetCoin(int coin);
+
+	void SetDeath();
+	bool CheckCollide(Vector2 targetPos, Vector2 targetSize);
 
 	void UpdatePos(float deltaTime, float difficult);
 
@@ -42,5 +47,6 @@ private:
 	float m_speed;
 	int m_health;
 	int m_score;
+	int m_coin;
 };
 

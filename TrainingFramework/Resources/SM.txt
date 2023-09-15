@@ -5,7 +5,7 @@ FAR 500.0
 FOV 1.0
 SPEED 5.0
 ###########################################################################
-#Animations: 1
+#Animations: 2
 
 ID loading_animation
 MODEL Sprite2D
@@ -14,11 +14,24 @@ TEXTURE loading_animation
 NUM_FRAMES 30
 NUM_ACTION 1
 CURRENT_ACTION 0 
+FRAME_TIME 0.01
+SHADER Animation 
+POSITION 880.0 940.0 
+ROTATION 0.0 0.0 0.0 
+SCALE 60.0 60.0 
+--------------------------------------------------------------------------
+ID coins
+MODEL Sprite2D
+TEXTURES 1
+TEXTURE coins
+NUM_FRAMES 5
+NUM_ACTION 1
+CURRENT_ACTION 0 
 FRAME_TIME 0.1
 SHADER Animation 
-POSITION 640.0 480.0 
+POSITION 50.0 50.0 
 ROTATION 0.0 0.0 0.0 
-SCALE 360.0 360.0 
+SCALE 60.0 60.0 
 --------------------------------------------------------------------------
 ###########################################################################
 #Aliens: 12
@@ -47,9 +60,10 @@ FRAME_TIME 0.1
 
 SHADER Animation 
 SCALE 60.0 60.0 
-SPEED 100.0
+SPEED 50.0
 HEALTH 1
 SCORE 10
+COIN 10
 --------------------------------------------------------------------------
 ID mobAlien2
 
@@ -75,9 +89,10 @@ FRAME_TIME 0.1
 
 SHADER Animation 
 SCALE 60.0 60.0 
-SPEED 110.0
+SPEED 55.0
 HEALTH 1
 SCORE 10
+COIN 10
 --------------------------------------------------------------------------
 ID mobAlien3
 
@@ -103,9 +118,10 @@ FRAME_TIME 0.1
 
 SHADER Animation 
 SCALE 60.0 60.0 
-SPEED 120.0
+SPEED 60.0
 HEALTH 1
 SCORE 10
+COIN 10
 --------------------------------------------------------------------------
 ID mobAlien4
 
@@ -131,9 +147,10 @@ FRAME_TIME 0.1
 
 SHADER Animation 
 SCALE 60.0 60.0 
-SPEED 130.0
+SPEED 65.0
 HEALTH 1
 SCORE 10
+COIN 10
 --------------------------------------------------------------------------
 ID medAlien1
 
@@ -159,9 +176,10 @@ FRAME_TIME 0.1
 
 SHADER Animation 
 SCALE 80.0 80.0 
-SPEED 100.0
+SPEED 50.0
 HEALTH 2
 SCORE 50
+COIN 20
 --------------------------------------------------------------------------
 ID medAlien2
 
@@ -187,9 +205,10 @@ FRAME_TIME 0.1
 
 SHADER Animation 
 SCALE 80.0 80.0 
-SPEED 110.0
+SPEED 55.0
 HEALTH 2
 SCORE 50
+COIN 20
 --------------------------------------------------------------------------
 ID medAlien3
 
@@ -215,9 +234,10 @@ FRAME_TIME 0.1
 
 SHADER Animation 
 SCALE 80.0 80.0 
-SPEED 130.0
+SPEED 65.0
 HEALTH 2
 SCORE 50
+COIN 20
 --------------------------------------------------------------------------
 ID medAlien4
 
@@ -243,9 +263,10 @@ FRAME_TIME 0.1
 
 SHADER Animation 
 SCALE 80.0 80.0 
-SPEED 200.0
+SPEED 100.0
 HEALTH 1
 SCORE 50
+COIN 20
 --------------------------------------------------------------------------
 ID highAlien1
 
@@ -271,9 +292,10 @@ FRAME_TIME 0.1
 
 SHADER Animation 
 SCALE 100.0 100.0 
-SPEED 200.0
+SPEED 100.0
 HEALTH 3
 SCORE 100
+COIN 50
 --------------------------------------------------------------------------
 ID highAlien2
 
@@ -299,9 +321,10 @@ FRAME_TIME 0.1
 
 SHADER Animation 
 SCALE 100.0 100.0 
-SPEED 220.0
+SPEED 110.0
 HEALTH 3
 SCORE 100
+COIN 50
 --------------------------------------------------------------------------
 ID highAlien3
 
@@ -327,9 +350,10 @@ FRAME_TIME 0.1
 
 SHADER Animation 
 SCALE 100.0 100.0 
-SPEED 240.0
+SPEED 120.0
 HEALTH 3
 SCORE 100
+COIN 50
 --------------------------------------------------------------------------
 ID highAlien4
 
@@ -355,13 +379,14 @@ FRAME_TIME 0.1
 
 SHADER Animation 
 SCALE 100.0 100.0 
-SPEED 240.0
+SPEED 120.0
 HEALTH 3
 SCORE 100
+COIN 50
 --------------------------------------------------------------------------
 
 ###########################################################################
-#Objects: 5
+#Objects: 7
 
 ID intro_logo
 MODEL Sprite2D
@@ -395,6 +420,22 @@ POSITION 1200.0 480.0
 ROTATION 0.0 0.0 0.0
 SCALE 160.0 960.0
 --------------------------------------------------------------------------
+ID play_upper_pane
+MODEL Sprite2D
+TEXTURE play_pane
+SHADER TriangleShader
+POSITION 640.0 50.0
+ROTATION 0.0 0.0 0.0
+SCALE 1280.0 100.0
+--------------------------------------------------------------------------
+ID play_lower_pane
+MODEL Sprite2D
+TEXTURE play_pane
+SHADER TriangleShader
+POSITION 640.0 910.0
+ROTATION 0.0 0.0 0.0
+SCALE 1280.0 100.0
+--------------------------------------------------------------------------
 ID over_background
 MODEL Sprite2D
 TEXTURE temp
@@ -404,7 +445,7 @@ ROTATION 0.0 0.0 0.0
 SCALE 1280.0 960.0
 --------------------------------------------------------------------------
 ###########################################################################
-#Buttons: 7
+#Buttons: 10
 
 ID button_start
 Type BUTTON_START
@@ -456,16 +497,43 @@ Type BUTTON_PAUSE
 MODEL Sprite2D
 TEXTURE pause_col_square_button
 SHADER TriangleShader
-POSITION 200.0 200.0
+POSITION 1150.0 50.0
 ROTATION 0.0 0.0 0.0
-SCALE 80.0 80.0
+SCALE 50.0 50.0 
 --------------------------------------------------------------------------
 ID button_resume
 Type BUTTON_RESUME
 MODEL Sprite2D
 TEXTURE play_col_square_button
 SHADER TriangleShader
-POSITION 300.0 200.0
+POSITION 1220.0 50.0
 ROTATION 0.0 0.0 0.0
-SCALE 80.0 80.0
+SCALE 50.0 50.0 
+--------------------------------------------------------------------------
+ID reload_speed
+Type BUTTON_RESUME
+MODEL Sprite2D
+TEXTURE upgrade_frame
+SHADER TriangleShader
+POSITION 100.0 900.0
+ROTATION 0.0 0.0 0.0
+SCALE 50.0 50.0 
+--------------------------------------------------------------------------
+ID bullet_amount
+Type BUTTON_RESUME
+MODEL Sprite2D
+TEXTURE upgrade_frame
+SHADER TriangleShader
+POSITION 200.0 900.0
+ROTATION 0.0 0.0 0.0
+SCALE 50.0 50.0 
+--------------------------------------------------------------------------
+ID freeze
+Type BUTTON_RESUME
+MODEL Sprite2D
+TEXTURE upgrade_frame
+SHADER TriangleShader
+POSITION 300.0 900.0
+ROTATION 0.0 0.0 0.0
+SCALE 50.0 50.0 
 --------------------------------------------------------------------------

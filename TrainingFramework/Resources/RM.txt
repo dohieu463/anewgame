@@ -2,7 +2,8 @@
 ID 0	FILE Sprite2D
 ID 1	FILE Rectangle
 
-#2DTextures: 60
+#2DTextures: 64
+
 ID 0	FILE base 
 ID 1	FILE btn_exit 
 ID 2	FILE btn_quit 
@@ -63,7 +64,48 @@ ID 56 	FILE settings_button
 ID 57	FILE start_button
 ID 58	FILE pause_col_square_button
 ID 59	FILE play_col_square_button
+ID 60	FILE red_rectangle
+ID 61	FILE play_pane
+ID 62	FILE coins
+ID 63	FILE upgrade_frame
+
 #Shaders: 3
 ID 0	FILE TriangleShader
 ID 1	FILE Animation
 ID 3	FILE Text
+
+#Sound: 5
+FILE tu_sena
+FILE explosion
+FILE intro
+FILE menu
+FILE play
+
+#Texts: 4
+ID		reloading
+POS		1000 940
+COLOR 		255 0 0 255
+SIZE		30
+MESSAGE		Reloading...
+FONT		../Resources/Fonts/orbitron/Orbitron-Black.ttf
+
+ID		current_bullets
+POS		600 50
+COLOR 		255 0 0 255
+SIZE		30
+MESSAGE		Reloading...
+FONT		../Resources/Fonts/orbitron/Orbitron-Black.ttf
+
+ID		scores
+POS		300 50
+COLOR 		255 0 0 255
+SIZE		30
+MESSAGE		...
+FONT		../Resources/Fonts/orbitron/Orbitron-Black.ttf
+
+ID		coins
+POS		150 50
+COLOR 		255 0 0 255
+SIZE		30
+MESSAGE		coins
+FONT		../Resources/Fonts/orbitron/Orbitron-Black.ttf

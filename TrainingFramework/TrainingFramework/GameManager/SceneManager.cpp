@@ -146,6 +146,7 @@ void SceneManager::LoadScene(char* smFile) {
                 float speed;
                 int health;
                 int score;
+                int coin;
 
                 file >> type >> alien_id >> type >> model_id >> type >> numTexture;
                 for (int j = 0; j < numTexture; ++j) {
@@ -162,7 +163,7 @@ void SceneManager::LoadScene(char* smFile) {
                 }
 
                 file >> type >> shader_id >> type >> size.x >> size.y 
-                    >> type >> speed >> type >> health >> type >> score >> type; //Buffer ở cuối này là dòng gạch ngang trong file
+                    >> type >> speed >> type >> health >> type >> score >> type >> coin >> type; //Buffer ở cuối này là dòng gạch ngang trong file
                 // Lưu thông tin về alien vào đây
                 std::shared_ptr<Model> modelPtr = ResourceManager::GetInstance()->GetModelPointerByName(model_id.c_str());
                 std::shared_ptr<Shaders> shaderPtr = ResourceManager::GetInstance()->GetShaderPointerByName(shader_id.c_str());
@@ -175,6 +176,7 @@ void SceneManager::LoadScene(char* smFile) {
 
                 std::shared_ptr<BaseAlien> newAlien = std::make_shared<BaseAlien>(modelPtr, textureVector, shaderPtr, numFrames, numAction, currentAction, frameTime, speed, health, score);
                 newAlien->SetSize(size.x, size.y);
+                newAlien->SetCoin(coin);
                 newAlien->SetObjectID(alien_id);
                 m_aliens.insert(std::make_pair(alien_id, newAlien));
             }

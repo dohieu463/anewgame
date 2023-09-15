@@ -16,22 +16,31 @@ GSPlay::~GSPlay()
 
 void GSPlay::Init()
 {
-	m_playBackground = SceneManager::GetInstance()->GetObjectByID("play_background");
-	m_base = SceneManager::GetInstance()->GetObjectByID("human_base");
-	m_loadingAnimation = SceneManager::GetInstance()->GetAnimationByID("loading_animation");
-	auto buttonPause = SceneManager::GetInstance()->GetButtonByID("button_pause");
-	m_buttonList.push_back(buttonPause);
-	auto buttonResume = SceneManager::GetInstance()->GetButtonByID("button_resume");
-	m_buttonList.push_back(buttonResume);
-	
+	m_objectVector.push_back(SceneManager::GetInstance()->GetObjectByID("play_background"));
+	m_objectVector.push_back(SceneManager::GetInstance()->GetObjectByID("human_base"));
+	m_objectVector.push_back(SceneManager::GetInstance()->GetObjectByID("play_upper_pane"));
+	m_objectVector.push_back(SceneManager::GetInstance()->GetObjectByID("play_lower_pane"));
+	AddAnimation("loading_animation");
+	AddAnimation("coins");
+	m_buttonList.push_back(SceneManager::GetInstance()->GetButtonByID("button_pause"));
+	m_buttonList.push_back(SceneManager::GetInstance()->GetButtonByID("button_resume"));
+	m_buttonList.push_back(SceneManager::GetInstance()->GetButtonByID("reload_speed"));
+	m_buttonList.push_back(SceneManager::GetInstance()->GetButtonByID("bullet_amount"));
+	m_buttonList.push_back(SceneManager::GetInstance()->GetButtonByID("freeze"));
+	AddText("reloading");
+	AddText("current_bullets");
+	AddText("scores");
+	AddText("coins");
+
+	AddSoundByName("play");
+	PlaySoundByName("play");
+
 	alienCount = 0;
 	m_time = 1;
 	lives = 3;
 	alienSpawned = 0;
 	score = 0;
-	m_mobAlienRate = 100;
-	m_medAlienRate = 0;
-	m_highAlienRate = 0;
+	coin = 0;
 	m_bullets = 10;
 	m_gunReloadTime = 2.0f;
 	m_reloadTime = 2.0f;
@@ -40,15 +49,17 @@ void GSPlay::Init()
 
 void GSPlay::Exit()
 {
+	StopSoundByName("play");
 }
 
 void GSPlay::Pause()
-{
-	
+{	
+	PauseSoundByName("play");
 }
 
 void GSPlay::Resume()
 {
+	ResumeSoundByName("play");
 }
 
 void GSPlay::GunUpdate(float deltaTime) 
@@ -67,13 +78,46 @@ void GSPlay::GunUpdate(float deltaTime)
 	}
 }
 
+void GSPlay::AlienUpdate(float deltaTime)
+{
+	std::vector<std::shared_ptr<BaseAlien>> aliveAlien;
+	float difficult = (10.0 + alienSpawned % 10) / 10;
+	for (auto& alien : m_alien) {
+		if (alien->GetAliveStatus())
+		{
+			alien->UpdatePos(deltaTime, difficult);
+			if (alien->GetPos().x > Globals::screenWidth - 60) {
+				alienCount--;
+				lives--;
+			}
+
+			else aliveAlien.push_back(alien);
+		}
+		else
+		{
+			alien->m_destroyedTime += deltaTime;
+			if (alien->m_destroyedTime <= 0.5f)
+				aliveAlien.push_back(alien);
+		}
+		alien->Update(deltaTime);
+	}
+	m_alien = aliveAlien;
+}
+
 void GSPlay::Update(float deltaTime)
 {
+	UpdateText("current_bullets", m_bullets, deltaTime);
+	UpdateText("scores", score, deltaTime);
+	UpdateText("coins", coin, deltaTime);
+	
 	SpawnByDifficult(deltaTime);
 	UpdateDifficult();
 	GunUpdate(deltaTime);
+	AlienUpdate(deltaTime);
+	/*
 	std::vector<std::shared_ptr<BaseAlien>> aliveAlien;
 	float difficult = (10.0 + alienSpawned % 10) / 10;
+	
 	for (auto& alien : m_alien) {
 		if (alien->GetAliveStatus()) 
 		{
@@ -94,21 +138,32 @@ void GSPlay::Update(float deltaTime)
 		alien->Update(deltaTime);
 	}	
 	m_alien = aliveAlien;
+	*/
 
 	if (lives == 0)
 	{
-		UpdateScore(Globals::topScores, score);
-		GSMachine::GetInstance()->PushState(StateType::STATE_GAMEOVER);
+		UpdateScore(Globals::topScores, score); 
+		GSMachine::GetInstance()->PushState(StateType::STATE_GAMEOVER); 
 	}
+	for (auto& it : m_animationMap) 
+		it.second->Update(deltaTime); 
 }
 
 void GSPlay::Draw()
 {
-	m_playBackground->Draw();
-	m_base->Draw();
+	for (auto& object : m_objectVector)
+		object->Draw();
+	RenderText("current_bullets");
+	RenderText("scores");
+	RenderText("coins");
+	DrawAnimation("coins");
 	for (auto& alien : m_alien)
 		alien->Draw();
-	if (isBulletOut) m_loadingAnimation->Draw();
+	if (isBulletOut)
+	{
+		DrawAnimation("loading_animation");
+		RenderText("reloading");
+	}
 	for (auto& button : m_buttonList)
 		button->Draw();
 }
@@ -124,7 +179,7 @@ void GSPlay::HandleKeyEvents(int key, bool bIsPressed)
 
 void GSPlay::HandleTouchEvents(float x, float y, bool bIsPressed)
 {	
-	if(!isBulletOut) 
+	if(!isBulletOut && y >= 100 && y <= 860 && GSMachine::GetInstance()->IsRunning())
 	{
 		m_bullets-= 0.5f;
 		for (auto& alien : m_alien)
@@ -133,6 +188,7 @@ void GSPlay::HandleTouchEvents(float x, float y, bool bIsPressed)
 			{
 				alienCount--;
 				score += alien->GetScore();
+				coin += alien->GetCoin();
 			}
 		}
 	}

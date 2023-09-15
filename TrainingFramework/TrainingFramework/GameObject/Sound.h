@@ -1,26 +1,23 @@
-/*
 #pragma once
+#include "../TrainingFramework/stdafx.h"
+#include "SDL.h"
+#include "SDL_mixer.h"
 
-#include <SDL.h>
-#include <string>
-
-class Sound {
+class Sound
+{
 public:
     Sound();
+    Sound(const char* soundPath);
     ~Sound();
 
-    bool Load(const std::string& filePath);
+    bool Load(const char* soundPath);
     void Play();
     void Pause();
     void Resume();
     void Stop();
-    bool IsPlaying();
-
+    bool isPaused;
 private:
-    SDL_AudioSpec m_wantedSpec;
-    Uint32 m_deviceId;
-    Uint8* m_audioBuffer;
-    Uint32 m_audioLength;
-    bool m_isPlaying;
+    Mix_Music* music;
 };
-*/
+
+

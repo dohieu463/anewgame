@@ -2,6 +2,7 @@
 #include "../TrainingFramework/stdafx.h"
 #include "GSBase.h"
 #include "../TrainingFramework/GameObject/Object.h"
+#include "../TrainingFramework/GameObject/Sound.h"
 class GSIntro :
     public GSBase
 {
@@ -25,5 +26,6 @@ public:
 private:
 	std::shared_ptr<Object> m_intro;
 	float	m_ftime;
+	std::shared_ptr<Sound> m_introSound;
 };
 
