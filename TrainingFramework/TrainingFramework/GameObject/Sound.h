@@ -12,6 +12,7 @@ public:
 
     bool Load(const char* soundPath);
     void Play();
+    void PlaySingle();
     void Pause();
     void Resume();
     void Stop();

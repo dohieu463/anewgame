@@ -61,6 +61,14 @@ void GSBase::PlaySoundByName(const char* soundName)
 	}
 }
 
+void GSBase::PlaySingleSoundByName(const char* soundName)
+{
+	auto it = m_soundMap.find(soundName);
+	if (it != m_soundMap.end()) {
+		it->second.get()->PlaySingle();
+	}
+}
+
 void GSBase::PauseSoundByName(const char* soundName)
 {
 	auto it = m_soundMap.find(soundName);

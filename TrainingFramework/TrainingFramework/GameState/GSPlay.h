@@ -31,7 +31,10 @@ public:
 	void	SpawnByDifficult(float deltaTime);
 	void	GunUpdate(float deltaTime);
 	void	AlienUpdate(float deltaTime);
-	
+	void	Freeze(float deltaTime);
+	void	FireSpellUpdate(float deltaTime);
+	void	SpawnFire();
+
 	void	HandleEvents() override;
 	void	HandleKeyEvents(int key, bool bIsPressed) override;
 	void	HandleTouchEvents(float x, float y, bool bIsPressed) override;
@@ -41,6 +44,7 @@ private:
 	std::vector<std::shared_ptr<Object>> m_objectVector;
 	std::vector<std::shared_ptr<BaseAlien>> m_alien;
 	std::vector<std::shared_ptr<GameButton>> m_buttonList;
+	std::vector<std::shared_ptr<Animation>> m_fire;
 
 	int alienCount;
 	float m_time;
@@ -51,8 +55,16 @@ private:
 	float m_medAlienRate;
 	float m_highAlienRate;
 	float m_bullets;
+	float m_maxBullets;
 	float m_gunReloadTime;
 	float m_reloadTime;
 	bool isBulletOut;
+	bool isFreezed;
+	bool isFireSpellCasted;
 	int coin;
+	float freezeTime;
+	float maxFreezeTime;
+	float fireTime;
+	float maxFireTime;
+	int fireCount;
 };

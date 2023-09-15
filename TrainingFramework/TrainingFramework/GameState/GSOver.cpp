@@ -19,19 +19,16 @@ GSOver::~GSOver()
 void GSOver::Init()
 {
 	m_overBackground = SceneManager::GetInstance()->GetObjectByID("over_background");
-	auto buttonRestart = SceneManager::GetInstance()->GetButtonByID("button_restart");
-	m_buttonList.push_back(buttonRestart);
-	auto buttonBackMenu = SceneManager::GetInstance()->GetButtonByID("button_back_to_menu");
-	m_buttonList.push_back(buttonBackMenu);
-	auto buttonScore = SceneManager::GetInstance()->GetButtonByID("button_score");
-	m_buttonList.push_back(buttonScore);
+	m_buttonList.push_back(SceneManager::GetInstance()->GetButtonByID("button_restart"));
+	m_buttonList.push_back(SceneManager::GetInstance()->GetButtonByID("button_back_to_menu"));
+	m_buttonList.push_back(SceneManager::GetInstance()->GetButtonByID("button_score"));
 	m_text.SetPos({ 640, 190, 1 }); // Đặt vị trí của văn bản
 	m_text.GetTextColor() = SDL_Color({ 255, 0, 0, 255 }); // Đặt màu sắc của văn bản
 	m_text.GetTextSize() = 80; // Đặt kích thước của văn bản
 	m_text.GetTextMessage() = "GAME OVER"; // Đặt nội dung văn bản
 	m_text.Init("../Resources/Fonts/orbitron/Orbitron-Black.ttf");
 	AddSoundByName("tu_sena");
-	PlaySoundByName("tu_sena");
+	PlaySingleSoundByName("tu_sena");
 }
 
 void GSOver::Exit()

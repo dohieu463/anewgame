@@ -5,7 +5,7 @@ FAR 500.0
 FOV 1.0
 SPEED 5.0
 ###########################################################################
-#Animations: 2
+#Animations: 3
 
 ID loading_animation
 MODEL Sprite2D
@@ -16,9 +16,22 @@ NUM_ACTION 1
 CURRENT_ACTION 0 
 FRAME_TIME 0.01
 SHADER Animation 
-POSITION 880.0 940.0 
+POSITION 880.0 900.0 
 ROTATION 0.0 0.0 0.0 
 SCALE 60.0 60.0 
+--------------------------------------------------------------------------
+ID fire
+MODEL Sprite2D
+TEXTURES 1
+TEXTURE burning_loop_1
+NUM_FRAMES 8
+NUM_ACTION 1
+CURRENT_ACTION 0 
+FRAME_TIME 0.01
+SHADER Animation 
+POSITION 0.0 00.0 
+ROTATION 0.0 0.0 0.0 
+SCALE 200.0 200.0 
 --------------------------------------------------------------------------
 ID coins
 MODEL Sprite2D
@@ -445,7 +458,7 @@ ROTATION 0.0 0.0 0.0
 SCALE 1280.0 960.0
 --------------------------------------------------------------------------
 ###########################################################################
-#Buttons: 10
+#Buttons: 11
 
 ID button_start
 Type BUTTON_START
@@ -511,7 +524,7 @@ ROTATION 0.0 0.0 0.0
 SCALE 50.0 50.0 
 --------------------------------------------------------------------------
 ID reload_speed
-Type BUTTON_RESUME
+Type BUTTON_UPGRADE_BULLET_RELOAD
 MODEL Sprite2D
 TEXTURE upgrade_frame
 SHADER TriangleShader
@@ -520,7 +533,7 @@ ROTATION 0.0 0.0 0.0
 SCALE 50.0 50.0 
 --------------------------------------------------------------------------
 ID bullet_amount
-Type BUTTON_RESUME
+Type BUTTON_UPGRADE_BULLET_AMOUNT
 MODEL Sprite2D
 TEXTURE upgrade_frame
 SHADER TriangleShader
@@ -529,11 +542,20 @@ ROTATION 0.0 0.0 0.0
 SCALE 50.0 50.0 
 --------------------------------------------------------------------------
 ID freeze
-Type BUTTON_RESUME
+Type BUTTON_SKILL_FREEZE
 MODEL Sprite2D
 TEXTURE upgrade_frame
 SHADER TriangleShader
 POSITION 300.0 900.0
+ROTATION 0.0 0.0 0.0
+SCALE 50.0 50.0 
+--------------------------------------------------------------------------
+ID fire
+Type BUTTON_SKILL_FIRE
+MODEL Sprite2D
+TEXTURE upgrade_frame
+SHADER TriangleShader
+POSITION 400.0 900.0
 ROTATION 0.0 0.0 0.0
 SCALE 50.0 50.0 
 --------------------------------------------------------------------------

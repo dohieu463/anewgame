@@ -13,6 +13,35 @@ public:
 		std::vector<GLfloat> frameTime
 	);
 
+	Animation(const Animation& other)
+	{
+		this->m_objectID = other.m_objectID;
+		this->m_model = other.m_model;
+		this->m_currentTexture = other.m_currentTexture;
+		this->m_textureVector = other.m_textureVector;
+		this->m_shader = other.m_shader;
+		this->m_camera = other.m_camera;
+
+		this->Set2DPos(other.m_pos.x, other.m_pos.y);
+		this->SetSize(other.m_scale.x, other.m_scale.y);
+
+		this->m_alpha = other.m_alpha;
+		this->m_width = other.m_width;
+		this->m_height = other.m_height;
+
+		this->m_numFrames = other.m_numFrames;
+		this->m_currentFrame = other.m_currentFrame;
+		this->m_frameTime = other.m_frameTime;
+		this->m_currentTime = other.m_currentTime;
+		this->m_numActions = other.m_numActions;
+		this->m_currentAction = other.m_currentAction;
+
+		this->m_numFramesVector = other.m_numFramesVector;
+		this->m_frameTimeVector = other.m_frameTimeVector;
+		this->m_numActionsVector = other.m_numActionsVector;
+		this->m_currentActionVector = other.m_currentActionVector;
+	}
+
 	Animation();
 	~Animation() override;
 	Vector2 GetSize() const {

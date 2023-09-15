@@ -50,6 +50,15 @@ void Sound::Play()
     }
 }
 
+void Sound::PlaySingle()
+{
+    if (music != nullptr) {
+        Mix_PlayMusic(music, 0);
+    }
+}
+
+
+
 void Sound::Stop()
 {
     if (music != nullptr && Mix_PlayingMusic()) {

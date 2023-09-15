@@ -40,6 +40,7 @@ public:
 
 	void AddSoundByName(const char* soundName);
 	void PlaySoundByName(const char* soundName);
+	void PlaySingleSoundByName(const char* soundName);
 	void PauseSoundByName(const char* soundName);
 	void ResumeSoundByName(const char* soundName);
 	void StopSoundByName(const char* soundName);

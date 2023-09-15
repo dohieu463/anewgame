@@ -40,7 +40,6 @@ bool GameButton::HandleTouchEvent(GLfloat x, GLfloat y, bool bIsPressed)
 		&& bIsPressed)
 	{
 		m_alpha = 2.0f;
-		m_isClick = true;
 		return true;
 	}
 
@@ -77,7 +76,12 @@ ButtonType GameButton::StringToButtonType(const char* buttonTypeStr) {
 		{"BUTTON_SCORE", BUTTON_SCORE},
 		{"BUTTON_PAUSE", BUTTON_PAUSE},
 		{"BUTTON_RESUME", BUTTON_RESUME},
-		{"BUTTON_RESTART", BUTTON_RESTART}
+		{"BUTTON_RESTART", BUTTON_RESTART},
+		{"BUTTON_UPGRADE_BULLET_AMOUNT", BUTTON_UPGRADE_BULLET_AMOUNT},
+		{"BUTTON_UPGRADE_BULLET_RELOAD", BUTTON_UPGRADE_BULLET_RELOAD},
+		{"BUTTON_SKILL_FREEZE", BUTTON_SKILL_FREEZE},
+		{"BUTTON_SKILL_FIRE", BUTTON_SKILL_FIRE}
+		
 	};
 
 	auto it = typeMap.find(buttonTypeStr);

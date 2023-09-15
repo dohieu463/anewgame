@@ -2,7 +2,7 @@
 ID 0	FILE Sprite2D
 ID 1	FILE Rectangle
 
-#2DTextures: 64
+#2DTextures: 67
 
 ID 0	FILE base 
 ID 1	FILE btn_exit 
@@ -68,6 +68,9 @@ ID 60	FILE red_rectangle
 ID 61	FILE play_pane
 ID 62	FILE coins
 ID 63	FILE upgrade_frame
+ID 64	FILE burning_loop_1
+ID 65	FILE burning_end_1
+ID 66	FILE burning_start_1
 
 #Shaders: 3
 ID 0	FILE TriangleShader
@@ -83,7 +86,7 @@ FILE play
 
 #Texts: 4
 ID		reloading
-POS		1000 940
+POS		1000 900
 COLOR 		255 0 0 255
 SIZE		30
 MESSAGE		Reloading...
